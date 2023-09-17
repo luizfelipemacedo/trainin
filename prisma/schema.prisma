@@ -1,0 +1,46 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Category {
+  id             Int        @id @default(autoincrement())
+  name           String
+  levelingFactor Float
+  Goal           Goal[]
+  Training       Training[]
+}
+
+model Goal {
+  id             Int      @id @default(autoincrement())
+  description    String
+  categoryId     Int
+  trainingNumber Int
+  userId         Int
+  Category       Category @relation(fields: [categoryId], references: [id])
+  User           User     @relation(fields: [userId], references: [id])
+}
+
+model Training {
+  id                 Int      @id @default(autoincrement())
+  categoryId         Int
+  dateHour           DateTime
+  userId             Int
+  totalTimeInSeconds Int
+  Category           Category @relation(fields: [categoryId], references: [id])
+  User               User     @relation(fields: [userId], references: [id])
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model User {
+  id       Int        @id @default(autoincrement())
+  name     String
+  email    String     @unique
+  password String
+  Goal     Goal[]
+  Training Training[]
+}
