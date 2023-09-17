@@ -24,15 +24,15 @@ function initializeMenu(htmlContent) {
         profileButton.addEventListener('click', loadProfilePage);
 
         function loadHomePage() {
-            //window.location.href = "../pages/search_products.html";
+            window.location.href = ("../home/home.html");
         }
 
         function loadStatsPage() {
-            //window.location.href = "../pages/favorites.html";
+            window.location.href = ("../stats/stats.html");
         }
 
         function loadProfilePage() {
-            //window.location.href = "../pages/stores.html";
+            window.location.href = ("../profile/profile.html");
         }
 
         updateMenuActiveButton();
