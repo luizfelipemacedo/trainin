@@ -1,0 +1,66 @@
+#content{
+        all: unset;        
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+
+        height: 90vh;
+}
+
+#content h2{  
+        text-align: center;
+}
+#content h2 .title{
+        font-family: "Audiowide";
+        font-size: 3.5vh;
+        font-weight: 400;
+        transition: all 0.15s;
+}
+#content h2:active .title{
+        color: #6aa5ff;
+        font-weight: 500;
+}
+#content h2 .title-alt{
+        font-family: "Outfit";
+        font-size: 3.2vh;
+        font-weight: 400;
+}
+
+#content img.logo{
+        width: 80%;
+        border-radius: 50%;
+        transition: all 0.2s;
+}
+#content img.logo:active{
+        transform: scale(0.97);
+}
+#content #login-button{
+        width: 70vw;
+        height: 6vh;
+        border-radius: 5vh;
+        border: none;
+        padding: 0 5%;
+        background-color: #193a6d;
+
+        display: inline-flex;
+        align-items: center;
+        justify-content: space-evenly;
+
+        transition: all 0.2s;
+}
+#content #login-button:active{
+        box-shadow: 2px 2px 20px 5px rgba(11, 31, 78, 0.774);
+        background-color: #0f4494;
+        transform: scale(1.02);
+}
+#content #login-button img{
+        aspect-ratio: 1;
+        height: 50%;
+}
+#content #login-button span{
+        color: white;
+        font-family: "Outfit";
+        font-size: 2vh;
+}

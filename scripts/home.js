@@ -1,3 +1,3 @@
-import { loadMenuComponent } from "../../components/navigation/navigation.js";
+import { loadMenuComponent } from "../components/navigation/navigation.js";
 
 loadMenuComponent();

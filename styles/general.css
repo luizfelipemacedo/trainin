@@ -1,6 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap'); */
 
 body{
         font-family: 'Outfit';
@@ -63,7 +63,11 @@ h1, h2, h3{
         font-family: "Audiowide";
         padding-left: 10vw;
         text-align: left;
-        font-size: 3vh;        
+        font-size: 3vh;
+        font-weight: 400;
+}
+#header h2.title-alt{
+        font-family: "Outfit";     
 }
 
 #content{

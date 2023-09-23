@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Criar Perfil - TrainIn</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='../styles/general.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='../styles/create-profile.css'>
+</head>
+<body>   
+    <div class="background"></div>
+    <div id="content">
+
+        <div id="instructions">
+                <span class='title'>Crie o seu perfil</span>
+                <br>
+                <span class='subtitle'>Não se preocupe, você pode<br>mudar esses dados depois!</span>
+        </div>
+
+        <div id='picture-area'>
+                <div id="empty-picture">
+                        <svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 1248" preserveAspectRatio="xMidYMid meet">
+                                <g transform="translate(0.000000, 1248.000000) scale(0.100000, -0.100000)">
+                                <path d="M6005 12474 c-22 -2 -89 -9 -149 -14 -542 -53 -1087 -253 -1556 -571 -1089 -738 -1659 -2029 -1470 -3331 117 -802 507 -1518 1129 -2075 454 -406 1057 -697 1666 -802 220 -39 317 -46 595 -46 278 0 375 7 595 46 1218 211 2250 1096 2647 2269 353 1043 189 2180 -442 3075 -568 804 -1437 1318 -2425 1435 -92 11 -518 21 -590 14z"/>
+                                <path d="M8585 5886 c-478 -363 -1085 -626 -1687 -730 -247 -43 -348 -51 -678 -51 -319 0 -364 3 -612 41 -586 88 -1171 326 -1668 676 l-114 81 -106 -17 c-58 -10 -181 -38 -275 -61 -807 -204 -1528 -616 -2120 -1210 -726 -728 -1170 -1655 -1297 -2704 -29 -238 -32 -741 -5 -930 53 -378 142 -589 320 -758 171 -163 421 -234 772 -220 269 11 533 55 1230 208 817 179 1195 244 1690 291 205 19 4525 19 4730 0 495 -47 873 -112 1690 -291 697 -153 961 -197 1230 -208 254 -10 438 21 605 103 172 84 315 254 390 463 74 203 108 420 117 736 34 1230 -451 2439 -1332 3320 -707 707 -1608 1156 -2597 1294 -206 29 -201 30 -283 -33z"/>
+                                </g>
+                        </svg>                                
+                </div>
+                <div class="upload">
+                        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16.8 9.18602C17.5496 7.83679 18.9717 7 20.5152 7H27.4848C29.0283 7 30.4504 7.83679 31.2 9.18602L32.4855 11.5H36.25C39.4256 11.5 42 14.0744 42 17.25V24.0436C39.9794 22.75 37.5773 22 35 22C33.8186 22 32.6739 22.1576 31.586 22.4529C30.5222 19.2834 27.5278 17 24 17C19.5817 17 16 20.5817 16 25C16 28.7945 18.6418 31.972 22.1865 32.7936C22.0639 33.5107 22 34.2479 22 35C22 36.7718 22.3545 38.4608 22.9963 40H11.75C8.57436 40 6 37.4256 6 34.25V17.25C6 14.0744 8.57436 11.5 11.75 11.5H15.5145L16.8 9.18602Z"/>
+                                <path d="M24 19.5C20.9624 19.5 18.5 21.9624 18.5 25C18.5 27.6415 20.3622 29.8481 22.8454 30.3786C24.0153 27.3035 26.3187 24.7871 29.2451 23.34C28.5411 21.1138 26.459 19.5 24 19.5Z"/>
+                                <path d="M35 46C41.0751 46 46 41.0751 46 35C46 28.9249 41.0751 24 35 24C28.9249 24 24 28.9249 24 35C24 41.0751 28.9249 46 35 46ZM35 28C35.5523 28 36 28.4477 36 29V34H41C41.5523 34 42 34.4477 42 35C42 35.5523 41.5523 36 41 36H36V41C36 41.5523 35.5523 42 35 42C34.4477 42 34 41.5523 34 41V36H29C28.4477 36 28 35.5523 28 35C28 34.4477 28.4477 34 29 34H34V29C34 28.4477 34.4477 28 35 28Z"/>
+                        </svg>
+                </div>
+        </div>
+
+        <form id="form" action="">
+                <input type="text" id="name" name="name" placeholder="Nome" oninput="javascript: this.value = this.value.replace(/[0-9]/g, '');">
+                <input type="number" maxlength="3" step="1" id="weight" name="weight" placeholder="Peso (Kg)" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength); this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                <input type="number" maxlength="3" step="1" id="age" name="age" placeholder="Idade" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength); this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+        </form>
+
+        <div id="button-area">
+                <button id="next-button">Avançar</div>
+        </div>
+    </div>
+    <div id="menu"></div>
+</body>
+<script type="module" src="../scripts/create-profile.js" type="module"></script>
+</html>
