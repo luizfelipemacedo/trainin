@@ -39,14 +39,14 @@
 }
 
 #content #list .workout.flexao{
-        background: url("./imgs/flexao-banner.png") no-repeat;
+        background: url("../src/imgs/home/flexao-banner.png") no-repeat;
         background-size: cover;
 }
 #content #list .workout.abdominal{
-        background: url("./imgs/abdominal-banner.png") no-repeat;
+        background: url("../src/imgs/home/abdominal-banner.png") no-repeat;
         background-size: cover;
 }
 #content #list .workout.agachamento{
-        background: url("./imgs/agachamento-banner.png") no-repeat;
+        background: url("../src/imgs/home/agachamento-banner.png") no-repeat;
         background-size: cover;
 }
