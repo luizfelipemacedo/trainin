@@ -1,0 +1,15 @@
+#content{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        row-gap: 2vh;
+
+        height: 75%;
+}
+
+#content .title{
+        width: 80%;
+        font-size: 4.2vh;
+        text-align: center;
+}

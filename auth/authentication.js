@@ -5,7 +5,7 @@ export async function authenticateWithGoogle() {
     const { user, session, error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: "http://localhost:5500/home.html",
+        redirectTo: "http://localhost:5500/pages/create-profile.html",
       },
     });
 

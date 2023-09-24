@@ -1,0 +1,84 @@
+#content{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        row-gap: 2vh;
+
+        height: 75%;
+}
+
+#content .title{
+        width: 80%;
+        font-size: 4.2vh;
+        text-align: center;
+}
+
+#content #picture-area{
+
+}
+
+#content #picture-area #empty-picture{
+        width: 50vw;
+        aspect-ratio: 1;
+        height: auto;
+        border-radius: 100%;
+        background: rgb(226, 226, 226);
+}
+
+#content #picture-area #empty-picture svg{
+        fill: #979797;
+        margin: 15%;
+        width: 70%;
+}
+
+#content #profile-info{
+        width: 80%;
+}
+
+#content #profile-info span{
+        width: 100%;
+        display: inline-block;
+        text-align: center;
+}
+#content #profile-info span.username{
+        font-size: 3vh;
+}
+#content #profile-info span.email{
+        font-size: 2vh;
+}
+
+#content #profile-options{
+        width: 75%;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        row-gap: 4vh;
+}
+
+#content #profile-options .option{
+        display: flex;
+        align-self: flex-start;
+        column-gap: 5vw;
+
+        fill: white;
+        stroke: white;
+        color: white;
+
+        transition: all 0.2s;
+}
+#content #profile-options .option:active{
+        fill: #a8a8a8;
+        stroke: #a8a8a8;
+        color: #a8a8a8;
+}
+#content #profile-options .option span{
+        font-size: 3vh;
+}
+#content #profile-options .option svg{
+        width: 6vw;
+        height: 100%;
+        aspect-ratio: 1;       
+}

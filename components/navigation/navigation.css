@@ -1,0 +1,69 @@
+/* ----------------- BOTTOM TAB ----------------- */
+
+#bottom-tab {
+        z-index: 10;
+        position: fixed;
+        width: 100%;
+        height: 8vh;
+        background: #131518;
+        bottom: 0;
+        padding: 0;
+
+        display: inline-flex;
+        align-items: center;
+        justify-content: space-between;
+
+        box-shadow: 0 50px 50px 60px rgba(0, 0, 0, 0.1);
+}
+
+#bottom-tab>div {
+        height: 75%;
+        width: 100%;
+        margin: 0 2vw;
+        padding-top: 5px;
+}
+
+#bottom-tab button {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        text-align: center;
+}
+
+#bottom-tab button span {
+        font-family: 'Atkinson Hyperlegible', sans-serif;
+        font-weight: 500;
+        font-size: 1.8vh;
+        text-align: center;
+        color: #3988ff;
+}
+
+#bottom-tab button svg {
+        height: 50%;
+        color: #3988ff;
+        fill: #3988ff;
+}
+
+#bottom-tab button.disabled span, #bottom-tab button.disabled svg{
+        color: #c2c8d1;
+        fill: #c2c8d1;
+
+        transition: all 0.1s;
+}
+
+#bottom-tab button:active.disabled svg, #bottom-tab button:active.disabled span{
+        color: #648cc7;
+        fill: #648cc7;
+}
+
+#bottom-tab button, #bottom-tab button:active{
+        background: none;
+        border: none;
+}
+
+#bottom-tab svg {
+        height: 4vh;
+}
