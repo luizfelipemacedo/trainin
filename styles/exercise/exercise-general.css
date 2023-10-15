@@ -1,0 +1,41 @@
+#header{
+        opacity: 1;
+}
+#instruction{
+        position: relative;
+        margin: 0;
+        margin-top: 8vh;
+        width: 100%;
+        height: 30vh;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background-color: #0f1013;
+}
+#instruction img.tutorial-img{
+        width: 90%;
+        height: 95%;
+        object-fit: contain;
+        filter: invert(100%);
+        mix-blend-mode: lighten;
+}
+#content{
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0;
+        height: 30vh;
+}
+#content #info{
+        width: 80%;
+}
+#content #info span.title{
+        display: block;
+        color: #4789ec;
+        font-size: 3vh;
+        text-align: center;
+}
