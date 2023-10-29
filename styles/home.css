@@ -38,15 +38,3 @@
         pointer-events: none;
 }
 
-#content #list .workout.flexao{
-        background: url("../src/imgs/home/flexao-banner.png") no-repeat;
-        background-size: cover;
-}
-#content #list .workout.abdominal{
-        background: url("../src/imgs/home/abdominal-banner.png") no-repeat;
-        background-size: cover;
-}
-#content #list .workout.agachamento{
-        background: url("../src/imgs/home/agachamento-banner.png") no-repeat;
-        background-size: cover;
-}

@@ -1,1 +1,9 @@
-export default process.env.NODE_ENV === "development" ? "http://localhost:5173" : "https://trainin.netlify.app.com";
+function getBaseUrl(url) {
+    const parsedUrl = new URL(url);
+    return `${parsedUrl.protocol}//${parsedUrl.host}`;
+  }
+
+const url = location.href;
+const baseUrl = getBaseUrl(url);
+
+export default baseUrl;

@@ -56,8 +56,8 @@ VITE_SUBAPASE_PUBLIC_KEY='SECRET_KEY'
 <table>
   <tr>
     <td align="center">
-      <a href="https://github.com/luizfelipemacedoc">
-        <img src="https://github.com/luizfelipemacedoc.png" width="100px;" alt="Foto de Luiz Felipe"/><br>
+      <a href="https://github.com/luizfelipemacedo">
+        <img src="https://github.com/luizfelipemacedo.png" width="100px;" alt="Foto de Luiz Felipe"/><br>
         <sub>
           <b>Luiz Felipe Macedo</b>
         </sub>
