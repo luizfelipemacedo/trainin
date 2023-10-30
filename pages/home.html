@@ -1,40 +1,72 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Home - TrainIn</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='/styles/general.css'>
-    <link rel='stylesheet' type='text/css' media='screen' href='/styles/home.css'>
-    <link rel="manifest" href="/manifest.json">
-</head>
-<body>   
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="../styles/general.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="../styles/home.css"
+    />
+  </head>
+  <body>
+    <style>
+      #content #list .workout.flexao {
+        background: url("../src/imgs/home/flexao-banner.png") no-repeat;
+        background-size: cover;
+      }
+      #content #list .workout.abdominal {
+        background: url("../src/imgs/home/abdominal-banner.png") no-repeat;
+        background-size: cover;
+      }
+      #content #list .workout.agachamento {
+        background: url("../src/imgs/home/agachamento-banner.png") no-repeat;
+        background-size: cover;
+      }
+    </style>
+
     <div class="background"></div>
     <div id="header">
-        <h2 class="title">TrainIn</h2>
+      <h2 class="title">TrainIn</h2>
     </div>
     <div id="content">
-        <div id="list">
-            <div class="workout flexao">
-                <div class="shadow"></div>
-                <span>Flexões</span>
-            </div>
-            <div class="workout abdominal">
-                <div class="shadow"></div>
-                <span>Abdominais</span>
-            </div>
-            <div class="workout agachamento">
-                <div class="shadow"></div>
-                <span>Agachamentos</span>
-            </div>
-            <div class="workout triceps">
-                <div class="shadow"></div>
-                <span>Tríceps</span>
-            </div>
+      <div id="list">
+        <div class="workout flexao">
+          <div class="shadow"></div>
+          <span>Flexões</span>
         </div>
+        <div class="workout abdominal">
+          <div class="shadow"></div>
+          <span>Abdominais</span>
+        </div>
+        <div class="workout agachamento">
+          <div class="shadow"></div>
+          <span>Agachamentos</span>
+        </div>
+        <div class="workout flexao">
+          <div class="shadow"></div>
+          <span>Flexões</span>
+        </div>
+        <div class="workout abdominal">
+          <div class="shadow"></div>
+          <span>Abdominais</span>
+        </div>
+        <div class="workout agachamento">
+          <div class="shadow"></div>
+          <span>Agachamentos</span>
+        </div>
+      </div>
     </div>
     <div id="menu"></div>
-</body>
-<script type="module" src="/scripts/home.js" type="module"></script>
+  </body>
+  <script type="module" src="../scripts/home.js" type="module"></script>
 </html>

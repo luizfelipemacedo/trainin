@@ -6,13 +6,15 @@
     <title>Index</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <link rel="manifest" href="/manifest.json">
   </head>
   <body>
     <script>
-      if ("serviceWorker" in navigator) {
-        navigator.serviceWorker.register("/serviceworker.js");
-        console.log("Service Worker Registered");
+      const hasAcessToken = localStorage.getItem("access_token");
+
+      if (hasAcessToken) {
+        window.location.href = "pages/home.html";
+      } else {
+        window.location.href = "pages/login.html";
       }
     </script>
   </body>
