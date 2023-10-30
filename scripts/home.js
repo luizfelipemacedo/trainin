@@ -1,7 +1,3 @@
-import { loadMenuComponent } from "/components/navigation/navigation.js";
-
-loadMenuComponent();
-
 initializeOptions();
 
 function initializeOptions(){

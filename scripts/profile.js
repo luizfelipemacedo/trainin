@@ -1,4 +1,3 @@
-import { loadMenuComponent } from "../components/navigation/navigation.js";
 import { getUserData } from "../auth/userData.js";
 
 (async () => {
@@ -13,5 +12,3 @@ import { getUserData } from "../auth/userData.js";
   const email = document.querySelector(".email");
   email.innerHTML = user.email;
 })();
-
-loadMenuComponent();

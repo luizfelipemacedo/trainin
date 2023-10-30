@@ -8,6 +8,7 @@
     <link rel='stylesheet' type='text/css' media='screen' href='/styles/general.css'>
     <link rel='stylesheet' type='text/css' media='screen' href='/styles/exercise/exercise-general.css'>
     <link rel='stylesheet' type='text/css' media='screen' href='/styles/exercise/leveling.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='/components/rep-counter/rep-counter.css'>
     <link rel="manifest" href="/manifest.json">
 </head>
 <body>   
@@ -25,10 +26,13 @@
         <div id="info">
             <span class="title">Quantas repetições você consegue fazer?</span>
         </div>
+        <div id="counter-area-insert">
+            <!-- Counter will be inserted here -->
+        </div>
     </div>
     <div id="menu"></div>
 </body>
-<script type="module" src="/scripts/exercise/exercise.js" type="module"></script>
+<script type="module" src="/scripts/exercise/loadExerciseInfo.js" type="module"></script>
 <script type="module" src="/scripts/exercise/leveling.js" type="module"></script>
 <script type="module" src="/scripts/general.js"></script>
 </html>
