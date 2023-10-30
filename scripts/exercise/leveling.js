@@ -8,4 +8,9 @@ function confirmCounterCallback(selectedValue){
         //Aqui deve ser o entrypoint da funcionalidade para registrar este valor no backend 
         //----------------------------
 
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const exerciseName = urlParams.get('exercise');
+
+        window.location.href= "/pages/exercise/sets.html?exercise="+exerciseName;
 }

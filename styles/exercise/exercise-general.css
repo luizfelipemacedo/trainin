@@ -21,6 +21,38 @@
         filter: invert(100%);
         mix-blend-mode: lighten;
 }
+#instruction img.banner-img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+}
+
+#instruction #exercise-info{
+        position: absolute;
+        width: 100%;
+        height: 7vh;
+        bottom: 0;
+        left: 0;
+
+        display: flex;
+        align-items: center;
+}
+#instruction .shadow{
+        background: linear-gradient(#00000000, #000000c7);
+        position: absolute;
+        width: 100%;
+        height: 12vh;
+        bottom: 0;
+        left: 0;
+}
+#instruction #exercise-info #exercise-name{
+        width: 70%;
+        margin-left: 5%;
+        font-size: 4vh;
+        font-weight: 400;
+}
+
+
 #content{
         position: relative;
         display: flex;

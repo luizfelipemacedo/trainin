@@ -1,0 +1,83 @@
+#content{
+        row-gap: 8vh;
+}
+#content #list{
+        width: 100%;
+}
+#content #list .carousel-item{
+        width: 100vw;
+        padding: 0 10%;
+}
+#content #list .carousel-item .exercise-item{
+        background-color: rgba(0, 0, 0, 0.4);
+        height: 20vh;
+        border-radius: 2vh;
+        padding: 1vh;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+}
+#content #list .carousel-item span{
+        margin: 0;
+        padding: 0;
+        border: 0;
+}
+#content #list .carousel-item span.week{
+        font-size: 2.4vh;
+}
+#content #list .carousel-item span.day{
+        font-size: 2.2vh;
+}
+#content #list .carousel-item div.sets-area{
+        width: 95%;
+        flex-grow: 1;
+        display: inline-flex;
+        align-items: center;
+        margin-top: 1vh;
+        justify-content: space-around;
+}
+#content #list .carousel-item div.sets-area .reps{
+        background-color: rgb(208, 220, 240);        
+        width: 10vw;
+        height: auto;
+        aspect-ratio: 1;
+        font-size: 3vh;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        color: rgb(17, 44, 95);
+}
+
+.carousel .carousel-control-prev, .carousel .carousel-control-next {
+        width: 10vw;
+}
+
+
+button#confirm{
+        position: relative;
+        width: 50%;
+        border: 0;
+        border-radius: 3vh;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background-color: #1E5BB6;
+
+        box-shadow: 3px 5px 25px 0px rgba(0, 0, 0, 0.3);
+
+        transition: all 0.2s;
+}
+button#confirm:active{
+        box-shadow: 1px 1px 20px 0px rgba(14, 48, 128, 0.65);
+}
+button#confirm span{
+        font-family: 'Outfit';
+        font-size: 3.4vh;
+        font-weight: 400;
+        color: white;
+}
