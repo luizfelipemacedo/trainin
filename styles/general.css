@@ -16,6 +16,13 @@ body::-webkit-scrollbar{
         -ms-overflow-style: none;  /* IE and Edge */
         scrollbar-width: none;  /* Firefox */
 }
+img {
+        -webkit-user-drag: none;
+        -khtml-user-drag: none;
+        -moz-user-drag: none;
+        -o-user-drag: none;
+        user-drag: none;
+}
 #occluder{
         position: absolute;
         left: 0;
@@ -51,23 +58,38 @@ h1, h2, h3{
 #header{
         z-index: 10;
         position: fixed;
+        top: 0;
         width: 100%;
         height: 8vh;
         margin: 0;
-        padding: 0;
+        padding: 0 7vw;
         border: 0;
         z-index: 1;
         background-color: #131518;
+        column-gap: 5vw;
+        display: flex;
+        align-items: center;
 }
 #header h2.title{
         font-family: "Audiowide";
-        padding-left: 10vw;
         text-align: left;
-        font-size: 3vh;
+        font-size: 3.2vh;
         font-weight: 400;
 }
 #header h2.title-alt{
         font-family: "Outfit";     
+}
+#header svg.back{
+        fill: white;
+        width: 8vw;
+        height: 40%;
+        align-self: center;
+        stroke: white;
+        stroke-width: 1px;
+        transition: all 0.1s;
+}
+#header svg.back:active{
+        opacity: 0.7;
 }
 
 #content{

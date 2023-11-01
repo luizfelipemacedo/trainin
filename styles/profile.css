@@ -17,20 +17,32 @@
 #content #picture-area{
 
 }
-
-#content #picture-area #empty-picture{
+#content #picture-area #profile-picture{
+        position: relative;
         width: 50vw;
         aspect-ratio: 1;
         height: auto;
         border-radius: 100%;
         background: rgb(226, 226, 226);
 }
-
-#content #picture-area #empty-picture svg{
+#content #picture-area #profile-picture svg{
         fill: #979797;
         margin: 15%;
         width: 70%;
 }
+#content #picture-area #profile-picture #profile-image{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        transform: scale(1.02);
+}
+
 
 #content #profile-info{
         width: 80%;

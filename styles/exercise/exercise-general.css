@@ -1,0 +1,73 @@
+#header{
+        opacity: 1;
+}
+#instruction{
+        position: relative;
+        margin: 0;
+        margin-top: 8vh;
+        width: 100%;
+        height: 30vh;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background-color: #0f1013;
+}
+#instruction img.tutorial-img{
+        width: 90%;
+        height: 95%;
+        object-fit: contain;
+        filter: invert(100%);
+        mix-blend-mode: lighten;
+}
+#instruction img.banner-img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+}
+
+#instruction #exercise-info{
+        position: absolute;
+        width: 100%;
+        height: 7vh;
+        bottom: 0;
+        left: 0;
+
+        display: flex;
+        align-items: center;
+}
+#instruction .shadow{
+        background: linear-gradient(#00000000, #000000c7);
+        position: absolute;
+        width: 100%;
+        height: 12vh;
+        bottom: 0;
+        left: 0;
+}
+#instruction #exercise-info #exercise-name{
+        width: 70%;
+        margin-left: 5%;
+        font-size: 4vh;
+        font-weight: 400;
+}
+
+
+#content{
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0;
+        height: 30vh;
+}
+#content #info{
+        width: 80%;
+}
+#content #info span.title{
+        display: block;
+        color: #4789ec;
+        font-size: 3vh;
+        text-align: center;
+}
