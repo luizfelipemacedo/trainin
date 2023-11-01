@@ -5,6 +5,9 @@ import { VitePWA } from "vite-plugin-pwa";
 export default defineConfig({
   plugins: [
     VitePWA({
+      workbox: {
+        globPatterns: ["**/*.{js,css,png,jpg,svg}"],
+      },
       registerType: "autoUpdate",
       manifest: {
         theme_color: "#1E5BB6",
@@ -50,7 +53,10 @@ export default defineConfig({
         login: resolve(__dirname, "pages/login.html"),
         stats: resolve(__dirname, "pages/stats.html"),
         createProfile: resolve(__dirname, "pages/create-profile.html"),
+        leveling: resolve(__dirname, "pages/exercise/leveling.html"),
+        sets: resolve(__dirname, "pages/exercise/sets.html"),
         navigation: resolve(__dirname, "components/navigation/navigation.html"),
+        rep_counter: resolve(__dirname, "components/rep-counter/rep-counter.html"),
       },
     },
   },

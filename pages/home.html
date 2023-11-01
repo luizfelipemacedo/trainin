@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -21,16 +21,21 @@
   <body>
     <style>
       #content #list .workout.flexao {
-        background: url("../src/imgs/home/flexao-banner.png") no-repeat;
-        background-size: cover;
+        background-image: url("../src/imgs/home/flexao-banner.jpg");
       }
       #content #list .workout.abdominal {
-        background: url("../src/imgs/home/abdominal-banner.png") no-repeat;
-        background-size: cover;
+        background-image: url("../src/imgs/home/abdominal-banner.jpg");
       }
       #content #list .workout.agachamento {
-        background: url("../src/imgs/home/agachamento-banner.png") no-repeat;
+        background-image: url("../src/imgs/home/agachamento-banner.jpg");
+      }
+      #content #list .workout.triceps {
+        background-image: url("../src/imgs/home/triceps-banner.jpg");
+      }
+      #content #list .workout {
         background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
       }
     </style>
 
@@ -52,21 +57,14 @@
           <div class="shadow"></div>
           <span>Agachamentos</span>
         </div>
-        <div class="workout flexao">
+        <div class="workout triceps">
           <div class="shadow"></div>
-          <span>Flexões</span>
-        </div>
-        <div class="workout abdominal">
-          <div class="shadow"></div>
-          <span>Abdominais</span>
-        </div>
-        <div class="workout agachamento">
-          <div class="shadow"></div>
-          <span>Agachamentos</span>
+          <span>Tríceps</span>
         </div>
       </div>
     </div>
     <div id="menu"></div>
   </body>
   <script type="module" src="../scripts/home.js" type="module"></script>
+  <script type="module" src="../scripts/loadMenu.js" type="module"></script>
 </html>

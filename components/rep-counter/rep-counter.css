@@ -1,0 +1,111 @@
+#counter-area{
+        margin-top: 2vh;
+        width: 80vw;
+        height: 38vh;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+}
+#counter-area #ring-area{
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-grow: 1;
+        max-height: 55%;
+}
+#counter-area #ring-area svg.ring{
+        stroke: #1E5BB6;
+        aspect-ratio: 1;
+        height: 100%;
+        width: auto;
+        object-fit: contain;     
+        fill: #ffffff;
+}
+#counter-area #ring-area span.ring-area-text{ 
+        position: absolute;
+        width: 100%;
+        text-align: center;
+        font-size: 12vh;
+        color: #ffffff;
+}
+#counter-area #selector-area{
+        flex-grow: 1;
+        max-height: 40%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        row-gap: 1vh;
+}
+#counter-area #selector-area #button-area{
+        flex-grow: 1;
+        max-height: 45%;
+        width: 80%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
+}
+#counter-area #selector-area #button-area div.selector-button{
+        position: relative;
+        height: 90%;
+        aspect-ratio: 1;
+
+        background-color: rgb(230, 238, 255);
+        /* border: #aaccff 0.3vh solid; */
+        border-radius: 35%;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        box-shadow: 1px 1px 20px 0px rgba(49, 95, 204, 0.4);
+
+        transition: all 0.2s;
+}
+#counter-area #selector-area #button-area div.selector-button:active{
+        box-shadow: 1px 1px 20px 5px rgba(49, 95, 204, 0.65);
+        transform: scale(1.1);
+}
+
+div.selector-button span{
+        position: absolute;
+        border: 0;
+        padding: 0;
+        margin: 0;
+        font-family: 'Atkinson Hyperlegible', sans-serif;
+        font-size: 4.6vh;
+        font-weight: 500;
+        color: #1E5BB6;
+}
+#counter-area #selector-area button#confirm{
+        position: relative;
+        width: 70%;
+        flex-grow: 1;
+        max-height: 48%;
+        border: 0;
+        padding: 0;
+        border-radius: 3vh;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background-color: #1E5BB6;
+
+        box-shadow: 3px 5px 25px 0px rgba(0, 0, 0, 0.3);
+
+        transition: all 0.2s;
+}
+#counter-area #selector-area button#confirm:active{
+        box-shadow: 1px 1px 20px 0px rgba(14, 48, 128, 0.65);
+}
+#counter-area #selector-area button#confirm span{
+        position: absolute;
+        font-family: 'Outfit';
+        font-size: 3.4vh;
+        font-weight: 400;
+        color: white;
+}

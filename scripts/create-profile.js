@@ -8,7 +8,7 @@ import { getUserData } from "../auth/userData";
   const inputName = document.getElementById("name");
   inputName.value = user.fullName;
 
-  const image = document.getElementById("empty-picture");
+  const image = document.getElementById("profile-image");
   image.style = `background-image: url(${user.picture})`;
 })();
 

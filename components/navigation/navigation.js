@@ -1,6 +1,6 @@
 //carrega o arquivo html como string e inicializa o menu depois de carregado
 export async function loadMenuComponent(){
-    fetch('../components/navigation/navigation.html').then(function (response) {      
+    fetch('/components/navigation/navigation.html').then(function (response) {      
         return response.text();
     }).then(function (html) {
         initializeMenu(html);
@@ -24,15 +24,15 @@ function initializeMenu(htmlContent) {
         profileButton.addEventListener('click', loadProfilePage);
 
         function loadHomePage() {
-            window.location.href = ("./home.html");
+            window.location.href = ("/pages/home.html");
         }
 
         function loadStatsPage() {
-            window.location.href = ("./stats.html");
+            window.location.href = ("/pages/stats.html");
         }
 
         function loadProfilePage() {
-            window.location.href = ("./profile.html");
+            window.location.href = ("/pages/profile.html");
         }
 
         updateMenuActiveButton();
