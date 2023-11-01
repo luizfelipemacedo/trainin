@@ -1,17 +1,19 @@
+import baseUrl from "../config/baseUrl";
+
 initializeOptions();
 
-function initializeOptions(){
-        var flexaoDiv = document.getElementsByClassName("workout flexao")[0];
-        var abdominalDiv = document.getElementsByClassName("workout abdominal")[0];
-        var agachamentoDiv = document.getElementsByClassName("workout agachamento")[0];
-        var tricepsDiv = document.getElementsByClassName("workout triceps")[0];
+function initializeOptions() {
+  const exercises = ["flexao", "abdominal", "agachamento", "triceps"];
 
-        flexaoDiv.addEventListener('click', function (event) { exerciseClickEvent("flexao"); });
-        abdominalDiv.addEventListener('click', function (event) { exerciseClickEvent("abdominal"); });
-        agachamentoDiv.addEventListener('click', function (event) { exerciseClickEvent("agachamento"); });
-        tricepsDiv.addEventListener('click', function (event) { exerciseClickEvent("triceps"); });
+  exercises.forEach((exercise) => {
+    const element = document.getElementsByClassName(`workout ${exercise}`)[0];
+    element.addEventListener("click", () => exerciseClickEvent(exercise));
+  });
 }
 
-function exerciseClickEvent(exerciseName){        
-        window.location.href="exercise/leveling.html?exercise="+exerciseName;
+function exerciseClickEvent(exerciseName) {
+  const url = new URL(`${baseUrl}/pages/exercise/leveling.html`);
+  url.searchParams.append('exercise', exerciseName);
+
+  window.location.assign(url.toString());
 }
