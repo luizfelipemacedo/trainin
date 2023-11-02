@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { getHelloWorld } from "../controllers/hello";
+import { deleteUserById } from "../controllers/user";
 
 const routes = Router();
 
-routes.get('/', getHelloWorld);
+routes.delete('/user/:id', deleteUserById);
 
 export default routes;

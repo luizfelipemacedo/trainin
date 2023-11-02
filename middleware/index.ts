@@ -26,3 +26,8 @@ export async function authenticateUser(request: Request, response: Response, nex
     return response.status(401).send({ message: 'Invalid token' });
   }
 }
+
+export async function errorHandler(error: Error, request: Request, response: Response, next: NextFunction) {
+  console.log(error);
+  return response.status(500).send({ message: error.message });
+}
