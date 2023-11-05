@@ -42,7 +42,8 @@
         width: 10vw;
         height: auto;
         aspect-ratio: 1;
-        font-size: 3vh;
+        font-size: 2.8vh;
+        font-weight: 500;
         border-radius: 50%;
         display: flex;
         align-items: center;
@@ -55,6 +56,9 @@
         width: 10vw;
 }
 
+.carousel .carousel-item {
+        transition-duration: 0.4s;
+}
 
 button#confirm{
         position: relative;
