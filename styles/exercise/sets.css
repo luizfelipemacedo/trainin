@@ -30,28 +30,6 @@
 #content #list .carousel-item span.day{
         font-size: 2.2vh;
 }
-#content #list .carousel-item div.sets-area{
-        width: 95%;
-        flex-grow: 1;
-        display: inline-flex;
-        align-items: center;
-        margin-top: 1vh;
-        justify-content: space-around;
-}
-#content #list .carousel-item div.sets-area .reps{
-        background-color: rgb(208, 220, 240);        
-        width: 10vw;
-        height: auto;
-        aspect-ratio: 1;
-        font-size: 2.8vh;
-        font-weight: 500;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        color: rgb(17, 44, 95);
-}
 
 /* Workouts Concluídos */
 #content #list .carousel-item .exercise-item.completed{

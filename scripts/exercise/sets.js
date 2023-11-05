@@ -1,5 +1,13 @@
 // import 'bootstrap/dist/css/bootstrap.min.css';
 // import 'bootstrap/dist/js/bootstrap.bundle.js';
+import baseUrl from "../../config/baseUrl";
+
+var exerciseName = getExerciseNameFromUrl();
+function getExerciseNameFromUrl(){
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        return urlParams.get('exercise');
+}
 
 const carouselControls = `
 <button class="carousel-control-prev" type="button" data-target="#list" data-slide="prev">
@@ -96,7 +104,7 @@ function onConfirmButtonClick(){
 
 //Evento disparado pelo item carousel contendo o index do workout
 function startWorkout(workoutDayIndex){
-        alert(`Start workout index ${workoutDayIndex}`);
+        //alert(`Start workout index ${workoutDayIndex}`);
         console.log(`Start workout index ${workoutDayIndex}`);
 
         //AQUI VEM A LÓGICA PARA INICIAR O TREINO A PARTIR DO INDEX
@@ -104,6 +112,9 @@ function startWorkout(workoutDayIndex){
         //
         //
         //
+        const url = new URL(`${baseUrl}/pages/exercise/workout.html`);
+        url.searchParams.append('exercise', exerciseName);      
+        window.location.assign(url.toString());
 }
 
 function lockedWorkoutWarning(message){
