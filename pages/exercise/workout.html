@@ -7,8 +7,8 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='/styles/general.css'>
     <link rel='stylesheet' type='text/css' media='screen' href='/styles/exercise/exercise-general.css'>
-    <link rel='stylesheet' type='text/css' media='screen' href='/styles/exercise/workout.css'>
     <link rel='stylesheet' type='text/css' media='screen' href='/components/rep-counter/rep-counter.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='/styles/exercise/workout.css'>
     <!-- <link rel="manifest" href="/manifest.json"> -->
 </head>
 <body>   
@@ -43,9 +43,25 @@
         <div id="counter-area-insert">
             <!-- Counter will be inserted here -->
         </div>
+        <div id="timer-area">
+            <span class="title">Descanse</span>
+            <div id="text-area">
+                <span id="timer-text-minutes">MM</span>
+                <span id="timer-text-divider">:</span>
+                <span id="timer-text-seconds">SS</span>
+            </div>
+            <div id="progress-bar">
+                <div id="fill-bar"></div>
+            </div>
+            <div id="controls">
+                <div id="stop"><div class="square"></div></div>
+                <div id="increment">+30s</div>
+            </div>
+        </div>
     </div>
 </body>
 <script type="module" src="/scripts/exercise/loadExerciseInfo.js" type="module"></script>
+<script type="module" src="/plugins/easytimer/easytimer.min.js" type="module"></script>
 <script type="module" src="/scripts/exercise/workout.js" type="module"></script>
 <script type="module" src="/scripts/general.js"></script>
 </html>
