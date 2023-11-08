@@ -1,0 +1,103 @@
+#content{
+        height: 48vh;
+        row-gap: 3vh;
+        justify-content: space-evenly !important;
+}
+
+#info{
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        flex-direction: column;
+}
+#content #info .title{
+        font-size: 4vh !important;
+}
+#content #info .subtitle{
+        font-size: 3vh;
+        text-align: center;
+}
+
+#content svg.completed{
+        width: 35vw;
+        height: 15vh;
+        aspect-ratio: 1;
+}
+
+#content #stats{
+        width: 75%;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: row;
+}
+
+#content #stats .item span{
+        font-size: 4vh;
+        font-weight: 600;
+}
+
+#content #stats .item span.subtitle{
+        font-size: 2vh;
+        font-weight: 400;
+}
+
+#content #stats div{
+        width: 45%;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        flex-direction: column;
+}
+
+#content #button-area{
+        width: 60%;
+        height: 7vh;
+        margin-top: 2vh;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        flex-direction: row;
+        column-gap: 8vw;
+}
+
+/* Botão Confirmar */
+#content #button-area button{
+        all: unset;
+        position: relative;
+        /* flex-grow: 3; */
+        border: 0;
+        border-radius: 1.5vh;
+        padding: 0 6vw;
+        height: 100%;
+        max-width: 45vw;
+        font-size: 3.2vh;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background-color: #1E5BB6;
+
+        box-shadow: 3px 5px 25px 0px rgba(0, 0, 0, 0.3);
+
+        transition: all 0.2s;
+}
+#content #button-area button#delete{
+        flex-grow: 1;
+}
+#content #button-area button#delete svg{
+        aspect-ratio: 1;
+        height: 70%;
+}
+#content #button-area button:active{
+        box-shadow: 1px 1px 20px 0px rgba(14, 48, 128, 0.65);
+        opacity: 0.85;
+}
+#content #button-area button span{
+        font-family: 'Outfit';
+        font-size: 3.4vh;
+        font-weight: 400;
+        color: white;
+}

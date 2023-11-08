@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Treino - TrainIn</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <link rel='stylesheet' type='text/css' media='screen' href='/styles/general.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='/styles/exercise/exercise-general.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='/styles/exercise/completed.css'>
+    <!-- <link rel="manifest" href="/manifest.json"> -->
+</head>
+<body>   
+    <div class="background"></div>
+    <div id="header">
+        <svg class="back" viewBox="-1 -1 18 18" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15 7.00016H3.83L8.71 2.12016C9.1 1.73016 9.1 1.09016 8.71 0.700159C8.61749 0.607455 8.5076 0.533907 8.38662 0.483726C8.26565 0.433545 8.13597 0.407715 8.005 0.407715C7.87403 0.407715 7.74435 0.433545 7.62338 0.483726C7.5024 0.533907 7.39251 0.607455 7.3 0.700159L0.71 7.29016C0.617296 7.38267 0.543749 7.49256 0.493567 7.61353C0.443386 7.73451 0.417556 7.86419 0.417556 7.99516C0.417556 8.12613 0.443386 8.25581 0.493567 8.37678C0.543749 8.49776 0.617296 8.60765 0.71 8.70016L7.3 15.2902C7.39258 15.3827 7.50249 15.4562 7.62346 15.5063C7.74442 15.5564 7.87407 15.5822 8.005 15.5822C8.13593 15.5822 8.26558 15.5564 8.38654 15.5063C8.50751 15.4562 8.61742 15.3827 8.71 15.2902C8.80258 15.1976 8.87602 15.0877 8.92613 14.9667C8.97623 14.8457 9.00202 14.7161 9.00202 14.5852C9.00202 14.4542 8.97623 14.3246 8.92613 14.2036C8.87602 14.0827 8.80258 13.9727 8.71 13.8802L3.83 9.00016H15C15.55 9.00016 16 8.55016 16 8.00016C16 7.45016 15.55 7.00016 15 7.00016Z"/>
+        </svg>
+        <h2 class="title">Treino</h2>
+    </div>
+    <div id="instruction">
+        <!-- <img class="tutorial-img" src=""> -->
+        <img class="banner-img" src="">
+        <div class="shadow"></div>
+        <div id="exercise-info">
+            <div id="exercise-name">Name</div>
+        </div>
+    </div>
+    <div id="content">
+        <svg class="completed" viewBox="0 0 126 126" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M63 0.5C28.5 0.5 0.5 28.5 0.5 63C0.5 97.5 28.5 125.5 63 125.5C97.5 125.5 125.5 97.5 125.5 63C125.5 28.5 97.5 0.5 63 0.5ZM46.0625 89.8125L23.625 67.375C23.0464 66.7964 22.5874 66.1094 22.2742 65.3534C21.9611 64.5974 21.7999 63.7871 21.7999 62.9688C21.7999 62.1504 21.9611 61.3401 22.2742 60.5841C22.5874 59.8281 23.0464 59.1411 23.625 58.5625C24.2036 57.9839 24.8906 57.5249 25.6466 57.2117C26.4026 56.8986 27.2129 56.7374 28.0313 56.7374C28.8496 56.7374 29.6599 56.8986 30.4159 57.2117C31.1719 57.5249 31.8589 57.9839 32.4375 58.5625L50.5 76.5625L93.5 33.5625C94.6686 32.3939 96.2536 31.7374 97.9062 31.7374C99.5589 31.7374 101.144 32.3939 102.313 33.5625C103.481 34.7311 104.138 36.3161 104.138 37.9688C104.138 39.6214 103.481 41.2064 102.313 42.375L54.875 89.8125C54.2968 90.3919 53.61 90.8516 52.8539 91.1652C52.0978 91.4788 51.2873 91.6403 50.4688 91.6403C49.6502 91.6403 48.8397 91.4788 48.0836 91.1652C47.3275 90.8516 46.6407 90.3919 46.0625 89.8125Z" fill="#4CAF50"/>
+        </svg>
+        <div id="info">
+            <span class="title">Parabéns!</span>
+            <span class="subtitle">Você concluiu o treino.</span>
+        </div>
+        <div id="stats">            
+            <div class="item">
+                <span id="reps">0</span>
+                <span class="subtitle">REPETIÇÕES</span>
+            </div>
+            <div class="item">
+                <span id="time">00:00</span>
+                <span class="subtitle">TEMPO</span>
+            </div>
+        </div>
+        <div id="button-area">
+            <button id="accept">Concluir</button>
+            <!-- <button id="delete">
+                <svg viewBox="0 0 24 25" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="none" d="M9 3.5H15M3 6.5H21M19 6.5L18.2987 17.0193C18.1935 18.5975 18.1409 19.3867 17.8 19.985C17.4999 20.5118 17.0472 20.9353 16.5017 21.1997C15.882 21.5 15.0911 21.5 13.5093 21.5H10.4907C8.90891 21.5 8.11803 21.5 7.49834 21.1997C6.95276 20.9353 6.50009 20.5118 6.19998 19.985C5.85911 19.3867 5.8065 18.5975 5.70129 17.0193L5 6.5M10 11V16M14 11V16" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button> -->
+        </div>  
+    </div>
+</body>
+<script type="module" src="/scripts/exercise/loadExerciseInfo.js" type="module"></script>
+<script type="module" src="/scripts/exercise/completed.js" type="module"></script>
+<script type="module" src="/scripts/general.js"></script>
+</html>

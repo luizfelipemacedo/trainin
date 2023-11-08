@@ -24,6 +24,9 @@ const timerControlIncrement = document.querySelector("#controls #increment");
 var actualSetIndex = 0;
 var exerciseName = getExerciseNameFromUrl();
 
+var startDateTime = null;
+var finishDateTime = null;
+
 function getExerciseNameFromUrl(){
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
@@ -46,7 +49,7 @@ function confirmCounterCallback(selectedValue){
         }
 }
 
-function registerWorkoutOnDatabase(){
+function registerWorkoutOnDatabase(workoutTotalTimeMs){
         //Inserir aqui a lógica para registrar o treino como concluído no banco de dados
         //
         //
@@ -54,10 +57,18 @@ function registerWorkoutOnDatabase(){
 }
 
 function finishWorkout(){
-        registerWorkoutOnDatabase();
-        alert("Treino finalizado!");
+        finishDateTime = new Date();
+        var datetimeDiffMs = finishDateTime - startDateTime;
+
+        registerWorkoutOnDatabase(datetimeDiffMs);
+        
+        localStorage.setItem("lastWorkoutReps", getTotalWorkoutReps());
+        localStorage.setItem("lastWorkoutDurationMs", datetimeDiffMs);
 
         //mudar para página de treino concluído
+        const url = new URL(`${baseUrl}/pages/exercise/completed.html`);
+        url.searchParams.append('exercise', exerciseName);      
+        window.location.assign(url.toString());
 }
 
 function initializeWorkoutInfo(workoutInfo){           
@@ -69,6 +80,16 @@ function initializeWorkoutInfo(workoutInfo){
 
         timerControlStop.addEventListener('click', stopTimer);
         timerControlIncrement.addEventListener('click', incrementTimer);
+
+        startDateTime = new Date();
+}
+
+function getTotalWorkoutReps(){
+        var count = 0;
+        window.currentWorkout.sets.forEach(set => {
+                count += set;
+        });
+        return count;
 }
 
 function updateSetsInfo(setsArray, targetSetIndex){
