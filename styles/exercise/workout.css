@@ -3,10 +3,6 @@ div.sets-area{
         margin-bottom: 3vh;
 }
 
-#content{
-
-}
-
 #content #info span.title{
         font-size: 3.6vh !important;
 }
@@ -19,7 +15,8 @@ div.sets-area{
         align-items: center;
         justify-content: center;
 
-        row-gap: 1vh;
+        row-gap: 2vh;
+        flex-grow: 2;
 }
 
 #timer-area .title{
