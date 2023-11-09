@@ -1,9 +1,9 @@
 //carrega o arquivo html como string e inicializa o menu depois de carregado
-export async function loadRepCounterComponent(parentDivId, confirmCounterCallback){
+export async function loadRepCounterComponent(parentDivId, confirmCounterCallback, enableModifiers = true, initialCounter = 1){
         fetch('/components/rep-counter/rep-counter.html').then(function (response) {      
                 return response.text();
         }).then(function (html) {
-                initializeRepCounter(html, parentDivId, confirmCounterCallback);
+                initializeRepCounter(html, parentDivId, confirmCounterCallback, enableModifiers, initialCounter);
         }).catch(function (err) {
                 console.warn('Something went wrong.', err);
         });
@@ -11,21 +11,30 @@ export async function loadRepCounterComponent(parentDivId, confirmCounterCallbac
 
 var counterValue = 1;
 
-function initializeRepCounter(htmlContent, parentDivId, confirmCounterCallback) {
+export function updateCounterValue(newValue){
+        counterValue = newValue;
+        window.counterText.innerHTML = counterValue;
+}
+
+function initializeRepCounter(htmlContent, parentDivId, confirmCounterCallback, enableModifiers = true, initialCounter = 1) {
         const parentDivElement = document.getElementById(parentDivId);
 
         parentDivElement.innerHTML = htmlContent;
 
+        const buttonsArea = document.querySelector("#counter-area #selector-area #button-area");
         const decreaseCounterButton = document.querySelector("#counter-area #selector-area #decrease");
         const increaseCounterButton = document.querySelector("#counter-area #selector-area #increase");
         const confirmCounterButton = document.querySelector("#counter-area #selector-area #confirm");
-        const counterText = document.querySelector("#counter-area #ring-area .ring-area-text");
-        counterValue = 1;
+        window.counterText = document.querySelector("#counter-area #ring-area .ring-area-text");
         
         decreaseCounterButton.addEventListener('click', decreaseCounter);
         increaseCounterButton.addEventListener('click', increaseCounter);
         confirmCounterButton.addEventListener('click', confirmCounter);
-        counterValue = 1;
+
+        if(!enableModifiers)
+                buttonsArea.style.display= 'none';
+
+        counterValue = initialCounter;
         updateCounter();
     
         function increaseCounter(){
@@ -45,5 +54,3 @@ function initializeRepCounter(htmlContent, parentDivId, confirmCounterCallback) 
         }
         const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
 }
-    
-  

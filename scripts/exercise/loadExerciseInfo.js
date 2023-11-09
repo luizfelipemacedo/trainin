@@ -1,3 +1,4 @@
+import baseUrl from "../../config/baseUrl";
 //TO DO:
 //Tentar fazer isso ser acessado de forma global em todos scripts que precisem
 //para evitar repetição
@@ -39,4 +40,10 @@ function loadExerciseInfo() {
   const exerciseNameDiv = document.querySelector("#instruction #exercise-name");
   if (exerciseNameDiv != null)
     exerciseNameDiv.innerHTML = exerciseNameDict[exerciseName];
+
+  //failsafe: caso usuário forçar um exerciseName inexistente, levar de volta pra home
+  if(exerciseNameDict[exerciseName] == null){
+    const url = new URL(`${baseUrl}/pages/home.html`);   
+    window.location.assign(url.toString());
+  }
 }

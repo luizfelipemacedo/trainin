@@ -95,11 +95,13 @@ h1, h2, h3{
 #content{
         width: 100%;
         top: 0;
+        bottom: 0;
         z-index: 0;
         position: absolute;
         padding-top: 4vh;
-        margin-top: 8vh;
         padding-bottom: 12vh;
+        margin-top: 8vh;
+        box-sizing: border-box;
 }
 
 #content .divider{

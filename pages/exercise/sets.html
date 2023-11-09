@@ -5,8 +5,13 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Sets - TrainIn</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <!-- <link rel='stylesheet' type='text/css' media='screen' href='/plugins/bootstrap/css/bootstrap.min.css'> -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <!-- BOOTSTRAP -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>    <link rel='stylesheet' type='text/css' media='screen' href='/styles/general.css'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <!-- BOOTSTRAP END -->
+
     <link rel='stylesheet' type='text/css' media='screen' href='/styles/general.css'>
     <link rel='stylesheet' type='text/css' media='screen' href='/styles/exercise/exercise-general.css'>
     <link rel='stylesheet' type='text/css' media='screen' href='/styles/exercise/sets.css'>
@@ -25,7 +30,7 @@
         <img class="banner-img" src="">
         <div class="shadow"></div>
         <div id="exercise-info">
-            <div id="exercise-name">Flexões</div>
+            <div id="exercise-name">Name</div>
         </div>
     </div>
     <div id="content">
@@ -33,65 +38,37 @@
             <span class="title">Escolha um treino<br>para iniciar</span>
         </div>
 
-        <div id="list" class="carousel slide" data-bs-ride="carousel_n" data-bs-interval="99999999999999">
+        <div id="list" class="carousel slide" data-ride="carousel" data-interval="false" data-keyboard="false">
+            <!-- Manter todos elementos para referência. Serão apagados em runtime -->
             <div class="carousel-inner">
-                <div class="carousel-item">
-                    <div class="exercise-item">
-                        <span class="week">Semana 1</span>
-                        <span class="day">Dia 1</span>
-                        <div class="sets-area">
-                            <div class="reps">1</div>
-                            <div class="reps">2</div>
-                            <div class="reps">3</div>
-                            <div class="reps">2</div>
-                            <div class="reps">2+</div>
-                        </div>
-                    </div>
-                </div>
                 <div class="carousel-item active">
                     <div class="exercise-item">
-                        <span class="week">Semana 1</span>
-                        <span class="day">Dia 2</span>
+                        <span class="week">Semana 0</span>
+                        <span class="day">Dia 0</span>
                         <div class="sets-area">
-                            <div class="reps">2</div>
-                            <div class="reps">3</div>
-                            <div class="reps">4</div>
-                            <div class="reps">5</div>
-                            <div class="reps">4+</div>
+                            <div class="reps">0</div>
+                            <div class="reps">0</div>
+                            <div class="reps">0</div>
+                            <div class="reps">0</div>
+                            <div class="reps">0+</div>
                         </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="exercise-item">
-                        <span class="week">Semana 1</span>
-                        <span class="day">Dia 3</span>
-                        <div class="sets-area">
-                            <div class="reps">3</div>
-                            <div class="reps">4</div>
-                            <div class="reps">5</div>
-                            <div class="reps">6</div>
-                            <div class="reps">5+</div>
-                        </div>
+                        <div class="locked-item">Bloqueado</div>
                     </div>
                 </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#list" data-bs-slide="prev">
+            <button class="carousel-control-prev" type="button" data-target="#list" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
+                <span class="sr-only">Previous</span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#list" data-bs-slide="next">
+            <button class="carousel-control-next" type="button" data-target="#list" data-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
+                <span class="sr-only">Next</span>
             </button>
         </div>
 
         <button id="confirm"><span>Iniciar</span></button>
     </div>
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<!-- <script src="/plugins/bootstrap/js/bootstrap.min.js" type="module"></script> -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-
 <script type="module" src="/scripts/exercise/loadExerciseInfo.js" type="module"></script>
 <script type="module" src="/scripts/exercise/sets.js" type="module"></script>
 <script type="module" src="/scripts/general.js"></script>

@@ -55,8 +55,11 @@ export default defineConfig({
         createProfile: resolve(__dirname, "pages/create-profile.html"),
         leveling: resolve(__dirname, "pages/exercise/leveling.html"),
         sets: resolve(__dirname, "pages/exercise/sets.html"),
+        workout: resolve(__dirname, "pages/exercise/workout.html"),
+        completed: resolve(__dirname, "pages/exercise/completed.html"),
         navigation: resolve(__dirname, "components/navigation/navigation.html"),
         rep_counter: resolve(__dirname, "components/rep-counter/rep-counter.html"),
+
       },
     },
   },
