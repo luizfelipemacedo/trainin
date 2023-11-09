@@ -1,8 +1,9 @@
 import baseUrl from "../../config/baseUrl";
 import { loadRepCounterComponent } from "/components/rep-counter/rep-counter.js";
 import { updateCounterValue } from "/components/rep-counter/rep-counter.js";
+import { Timer } from "easytimer.js"
 
-var timerInstance = new easytimer.Timer();
+var timerInstance = new Timer();
 const maxRestSeconds = 90;
 
 const setsAreaDiv = document.querySelector("#content #info .sets-area");
@@ -146,7 +147,7 @@ function startNewTimer(totalSeconds){
         timerInstance.removeEventListener('secondsUpdated', updateTimerVisual);
         timerInstance.removeEventListener('targetAchieved', onTimerCountdownFinished);
 
-        timerInstance = new easytimer.Timer();
+        timerInstance = new Timer();
         timerInstance.start({countdown: true, startValues: {seconds: totalSeconds}});
         updateTimerVisual();
 
