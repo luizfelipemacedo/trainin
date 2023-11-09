@@ -1,5 +1,4 @@
 #content{
-        height: 48vh;
         row-gap: 3vh;
         justify-content: space-evenly !important;
 }
@@ -9,6 +8,7 @@
         align-items: center;
         justify-content: space-evenly;
         flex-direction: column;
+        flex-grow: 1;
 }
 #content #info .title{
         font-size: 4vh !important;
@@ -20,13 +20,13 @@
 
 #content svg.completed{
         width: 35vw;
-        height: 15vh;
+        height: 12vh;
         aspect-ratio: 1;
 }
 
 #content #stats{
         width: 75%;
-
+        flex-grow: 2;
         display: flex;
         align-items: center;
         justify-content: space-between;
