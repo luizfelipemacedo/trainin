@@ -1,5 +1,5 @@
 #content{
-        row-gap: 8vh;
+        row-gap: 4vh;
 }
 #content #list{
         width: 100%;
@@ -12,11 +12,12 @@
         background-color: rgba(0, 0, 0, 0.4);
         height: 20vh;
         border-radius: 2vh;
-        padding: 1vh;
+        padding-top: 1vh;
         box-sizing: border-box;
         display: flex;
         flex-direction: column;
         align-items: center;
+        overflow: hidden;
 }
 #content #list .carousel-item span{
         margin: 0;
@@ -29,33 +30,57 @@
 #content #list .carousel-item span.day{
         font-size: 2.2vh;
 }
-#content #list .carousel-item div.sets-area{
-        width: 95%;
-        flex-grow: 1;
-        display: inline-flex;
-        align-items: center;
+
+/* Workouts Concluídos */
+#content #list .carousel-item .exercise-item.completed{
+        background-color: rgba(0, 0, 0, 0.25);
+        color: #c5c5c5;
+}
+#content #list .carousel-item .exercise-item.completed div.sets-area .reps{
+        opacity: 0.5;
+        /* background-color: rgb(134, 143, 156);        
+        color: rgba(17, 44, 95, 0.788); */
+}
+#content #list .carousel-item .exercise-item .completed-item{
+        width: 100%;
         margin-top: 1vh;
-        justify-content: space-around;
-}
-#content #list .carousel-item div.sets-area .reps{
-        background-color: rgb(208, 220, 240);        
-        width: 10vw;
-        height: auto;
-        aspect-ratio: 1;
-        font-size: 3vh;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        color: rgb(17, 44, 95);
+        flex-grow: 1;
+        background-color: rgba(0, 0, 0, 0.4);
+        text-align: center;
+        font-size: 2.6vh;
+        color: #fff;
 }
 
+/* Workouts Bloqueados */
+#content #list .carousel-item .exercise-item.locked{
+        background-color: rgba(0, 0, 0, 0.25);
+        color: #c5c5c5;
+}
+#content #list .carousel-item .exercise-item.locked div.sets-area .reps{
+        opacity: 0.5;
+        /* background-color: rgb(134, 143, 156);        
+        color: rgba(17, 44, 95, 0.788); */
+}
+#content #list .carousel-item .exercise-item .locked-item{
+        width: 100%;
+        margin-top: 1vh;
+        flex-grow: 1;
+        background-color: rgba(0, 0, 0, 0.4);
+        text-align: center;
+        font-size: 2.6vh;
+        color: #fff;
+}
+
+
+/* Carousel Controls */
 .carousel .carousel-control-prev, .carousel .carousel-control-next {
         width: 10vw;
 }
+.carousel .carousel-item {
+        transition-duration: 0.4s;
+}
 
-
+/* Botão Confirmar */
 button#confirm{
         position: relative;
         width: 50%;

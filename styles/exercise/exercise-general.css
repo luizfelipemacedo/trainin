@@ -50,6 +50,23 @@
         margin-left: 5%;
         font-size: 4vh;
         font-weight: 400;
+        text-shadow: 1px 2px 6px black;
+}
+
+#instruction #exercise-info #exercise-date{
+        width: 28%;
+        margin-right: 5%;
+        display: flex;
+        flex-direction: column;
+}
+#instruction #exercise-info #exercise-date span{
+        white-space: nowrap;
+        font-size: 4.5vw;
+        font-weight: 400;
+        text-align: right;
+}
+#instruction #exercise-info #exercise-date span.day{
+        font-size: 4vw;
 }
 
 
@@ -58,9 +75,10 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: space-between;
+        justify-content: space-evenly;
         margin: 0;
-        height: 30vh;
+        padding: 4vh 0;
+        height: 60vh;
 }
 #content #info{
         width: 80%;
@@ -70,4 +88,37 @@
         color: #4789ec;
         font-size: 3vh;
         text-align: center;
+}
+
+
+/* Sets & Reps */
+div.sets-area{
+        width: 95%;
+        flex-grow: 1;
+        display: inline-flex;
+        align-items: center;
+        margin-top: 1vh;
+        justify-content: space-around;
+}
+div.sets-area .reps{
+        background-color: rgb(208, 220, 240);        
+        width: 10vw;
+        height: auto;
+        aspect-ratio: 1;
+        font-size: 2.8vh;
+        font-weight: 500;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        color: rgb(34, 55, 94);
+}
+div.sets-area .reps.active{
+        background-color: rgb(219, 233, 255);        
+        color: rgb(0, 30, 85);
+        outline: #223f6b solid 0.5vh;
+}
+div.sets-area .reps.inactive{
+        background-color: rgb(104, 114, 128)
 }
