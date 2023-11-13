@@ -28,6 +28,11 @@ export async function authenticateUser(request: Request, response: Response, nex
 }
 
 export async function errorHandler(error: Error, request: Request, response: Response, next: NextFunction) {
-  console.log(error);
-  return response.status(500).send({ message: error.message });
+  console.error(error);
+
+  if (error instanceof Error) {
+    return response.status(400).send({ message: error.message });
+  };
+
+  return response.status(500).send({ message: "Erro no servidor" });
 }

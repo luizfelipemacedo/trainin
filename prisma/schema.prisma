@@ -190,6 +190,9 @@ model sessions {
   factor_id      String?          @db.Uuid
   aal            aal_level?
   not_after      DateTime?        @db.Timestamptz(6)
+  refreshed_at   DateTime?        @db.Timestamp(6)
+  user_agent     String?
+  ip             String?          @db.Inet
   mfa_amr_claims mfa_amr_claims[]
   refresh_tokens refresh_tokens[]
   users          users            @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
@@ -271,64 +274,41 @@ model users {
   identities                  identities[]
   mfa_factors                 mfa_factors[]
   sessions                    sessions[]
-  profiles                    profiles?
+  usuarios                    usuarios?
 
   @@index([instance_id])
   @@schema("auth")
 }
 
-model Category {
+model categorias {
+  id                Int       @id @default(autoincrement())
+  nome              String    @unique
+  fator_nivelamento String
+  treinos           treinos[]
+
+  @@schema("public")
+}
+
+model treinos {
   id             Int        @id @default(autoincrement())
-  name           String
-  levelingFactor Float
-  Goal           Goal[]
-  Training       Training[]
+  categoria      String
+  semana         Int
+  dia_semana     Int
+  repeticoes     Int[]
+  tempo_total    Int?
+  data_conclusao DateTime?
+  concluido      Boolean    @default(false)
+  usuario_id     String     @db.Uuid
+  categorias     categorias @relation(fields: [categoria], references: [nome])
+  usuarios       usuarios   @relation(fields: [usuario_id], references: [id])
 
   @@schema("public")
 }
 
-model Goal {
-  id             Int      @id @default(autoincrement())
-  description    String
-  categoryId     Int
-  trainingNumber Int
-  userId         Int
-  Category       Category @relation(fields: [categoryId], references: [id])
-  User           User     @relation(fields: [userId], references: [id])
-
-  @@schema("public")
-}
-
-model Training {
-  id                 Int      @id @default(autoincrement())
-  categoryId         Int
-  dateHour           DateTime
-  userId             Int
-  totalTimeInSeconds Int
-  Category           Category @relation(fields: [categoryId], references: [id])
-  User               User     @relation(fields: [userId], references: [id])
-
-  @@schema("public")
-}
-
-/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
-model User {
-  id       Int        @id @default(autoincrement())
-  name     String
-  email    String     @unique
-  password String
-  Goal     Goal[]
-  Training Training[]
-
-  @@schema("public")
-}
-
-/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
-model profiles {
-  id         String  @id @db.Uuid
-  first_name String?
-  last_name  String?
-  users      users   @relation(fields: [id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+model usuarios {
+  id      String    @id @db.Uuid
+  treinos treinos[]
+  users   users     @relation(fields: [id], references: [id], onDelete: Cascade, onUpdate: NoAction)
 
   @@schema("public")
 }
