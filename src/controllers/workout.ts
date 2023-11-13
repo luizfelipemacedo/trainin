@@ -25,6 +25,8 @@ export async function createRoutine(request: Request, response: Response) {
         }));
 
     const { categoria, usuario_id, repeticoesIniciais } = inputData;
+    
+    if (!repeticoesIniciais) throw new Error('Dados inválidos, o campo repeticoesIniciais é obrigatório')
 
     const fatorNivelamento = await getExerciceLevelingFactor(categoria);
 
@@ -49,6 +51,21 @@ export async function createRoutine(request: Request, response: Response) {
     return response.json({ message: 'Rotina de treino criada com sucesso' });
 }
 
+export async function getWorkoutRoutineByCategory(request: Request, response: Response) {
+    const { usuario_id, categoria } = request.params;
+
+    await validateInputData({ usuario_id, categoria });
+
+    const workoutRoutine = await prisma.treinos.findMany({
+        where: {
+            usuario_id,
+            categoria
+        }
+    });
+
+    return response.json(workoutRoutine);
+}
+
 async function getExerciceLevelingFactor(exercice: string): Promise<number> {
 
     const exerciceLevelingFactor = await prisma.categorias.findUnique({
@@ -67,10 +84,10 @@ async function getExerciceLevelingFactor(exercice: string): Promise<number> {
     return parseFloat(exerciceLevelingFactor.fator_nivelamento);
 }
 
-async function validateInputData(inputData: InputData) {
-    const { categoria, usuario_id, repeticoesIniciais } = inputData;
+async function validateInputData(inputData: Omit<InputData, 'repeticoesIniciais'>) {
+    const { categoria, usuario_id } = inputData;
 
-    if (!categoria || !usuario_id || !repeticoesIniciais) {
+    if (!categoria || !usuario_id) {
         throw new Error('Dados inválidos, os campos categoria e usuario_id são obrigatórios');
     }
 
