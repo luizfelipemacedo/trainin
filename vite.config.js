@@ -59,7 +59,6 @@ export default defineConfig({
         completed: resolve(__dirname, "pages/exercise/completed.html"),
         navigation: resolve(__dirname, "components/navigation/navigation.html"),
         rep_counter: resolve(__dirname, "components/rep-counter/rep-counter.html"),
-
       },
     },
   },
