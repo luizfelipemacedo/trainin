@@ -25,7 +25,7 @@ export async function createRoutine(request: Request, response: Response) {
         }));
 
     const { categoria, usuario_id, repeticoesIniciais } = inputData;
-    
+
     if (!repeticoesIniciais) throw new Error('Dados inválidos, o campo repeticoesIniciais é obrigatório')
 
     const fatorNivelamento = await getExerciceLevelingFactor(categoria);
@@ -48,7 +48,32 @@ export async function createRoutine(request: Request, response: Response) {
         data: workoutRoutine,
     });
 
-    return response.json({ message: 'Rotina de treino criada com sucesso' });
+    return response.status(200).json({ message: 'Rotina de treino criada com sucesso' });
+}
+
+type Workout = {
+    id: number,
+    tempo_total: number,
+};
+
+export async function concludeWorkout(request: Request, response: Response) {
+
+    const inputData = request.body as Workout;
+
+    await prisma.treinos.update({
+        where: {
+            id: Number(inputData.id)
+        },
+        data: {
+            data_conclusao: new Date(),
+            tempo_total: inputData.tempo_total,
+            concluido: true
+        }
+    });
+
+    console.log('request.body', request.body);
+
+    return response.status(200).json({ message: 'Exercício concluído com sucesso' });
 }
 
 export async function getWorkoutRoutineByCategory(request: Request, response: Response) {
