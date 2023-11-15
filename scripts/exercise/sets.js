@@ -3,6 +3,10 @@ import api from "../../config/api.js";
 import { getUserData } from "../../auth/userData.js";
 
 var exerciseName = getExerciseNameFromUrl();
+let dayAndWeekOfCurrentWorkout = {};
+
+let exerciseId = '';
+
 function getExerciseNameFromUrl() {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
@@ -121,6 +125,7 @@ function startWorkout(workoutDayIndex) {
   //
   const url = new URL(`${baseUrl}/pages/exercise/workout.html`);
   url.searchParams.append("exercise", exerciseName);
+  url.searchParams.append("exerciseId", exerciseId);
   window.location.assign(url.toString());
 }
 
@@ -212,6 +217,15 @@ const convertExerciseName = {
     const lastCompletedDayIndex = workoutList.findIndex(
       (workout) => workout.concluido === true
     );
+
+    dayAndWeekOfCurrentWorkout = {
+      weekNumber: workoutList[lastCompletedDayIndex + 1].semana,
+      dayNumber: workoutList[lastCompletedDayIndex + 1].dia_semana,
+    }
+
+    exerciseId = workoutList[lastCompletedDayIndex + 1].id;
+
+    console.log('exerciseId =>', exerciseId);
 
     spawnWorkoutItems(workoutList, lastCompletedDayIndex);
   } catch (error) {

@@ -1,7 +1,9 @@
+import api from "../../config/api";
+import { getUserData } from "../../auth/userData";
 import baseUrl from "../../config/baseUrl";
 import { loadRepCounterComponent } from "/components/rep-counter/rep-counter.js";
 import { updateCounterValue } from "/components/rep-counter/rep-counter.js";
-import { Timer } from "easytimer.js"
+import { Timer } from "easytimer.js";
 
 var timerInstance = new Timer();
 const maxRestSeconds = 90;
@@ -28,173 +30,200 @@ var exerciseName = getExerciseNameFromUrl();
 var startDateTime = null;
 var finishDateTime = null;
 
-function getExerciseNameFromUrl(){
-        const queryString = window.location.search;
-        const urlParams = new URLSearchParams(queryString);
-        return urlParams.get('exercise');
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+
+const weekOfWorkout = urlParams.get("week");
+const dayOfWorkout = urlParams.get("day");
+
+const exerciseId = urlParams.get("exerciseId");
+
+function getExerciseNameFromUrl() {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  return urlParams.get("exercise");
 }
 
-function confirmCounterCallback(selectedValue){
-        console.log("Counter confirmado: " + selectedValue);
-        //Esta função é o callback do botão de confirmar o counter
-        //Aqui deve ser o entrypoint da funcionalidade para registrar este valor no backend 
-        //----------------------------
+function confirmCounterCallback(selectedValue) {
+  console.log("Counter confirmado: " + selectedValue);
+  //Esta função é o callback do botão de confirmar o counter
+  //Aqui deve ser o entrypoint da funcionalidade para registrar este valor no backend
+  //----------------------------
 
-        if(actualSetIndex == window.currentWorkout.sets.length-1)
-        {
-                finishWorkout();
-                return;
-        }
-        else{
-                enableTimer();
-        }
+  if (actualSetIndex == window.currentWorkout.sets.length - 1) {
+    finishWorkout();
+    return;
+  } else {
+    enableTimer();
+  }
 }
 
-function registerWorkoutOnDatabase(workoutTotalTimeMs){
-        //Inserir aqui a lógica para registrar o treino como concluído no banco de dados
-        //
-        //
-        //
+async function registerWorkoutOnDatabase(workoutTotalTimeMs) {
+  try {
+    const workoutData = {
+      id: exerciseId,
+      tempo_total: workoutTotalTimeMs,
+    };
+
+    const response = await api.post("/workout/conclude", workoutData);
+
+    if (response.status != 200) throw new Error(response.data.message);
+
+    console.log("workout data =>", workoutData);
+  } catch (error) {
+    console.log(error);
+    alert("Erro ao registrar o treino");
+  }
 }
 
-function finishWorkout(){
-        finishDateTime = new Date();
-        var datetimeDiffMs = finishDateTime - startDateTime;
+function finishWorkout() {
+  finishDateTime = new Date();
+  var datetimeDiffMs = finishDateTime - startDateTime;
 
-        registerWorkoutOnDatabase(datetimeDiffMs);
-        
-        localStorage.setItem("lastWorkoutReps", getTotalWorkoutReps());
-        localStorage.setItem("lastWorkoutDurationMs", datetimeDiffMs);
+  registerWorkoutOnDatabase(datetimeDiffMs);
 
-        //mudar para página de treino concluído
-        const url = new URL(`${baseUrl}/pages/exercise/completed.html`);
-        url.searchParams.append('exercise', exerciseName);      
-        window.location.assign(url.toString());
+  localStorage.setItem("lastWorkoutReps", getTotalWorkoutReps());
+  localStorage.setItem("lastWorkoutDurationMs", datetimeDiffMs);
+
+  //mudar para página de treino concluído
+  // const url = new URL(`${baseUrl}/pages/exercise/completed.html`);
+  // url.searchParams.append('exercise', exerciseName);
+  // window.location.assign(url.toString());
 }
 
-function initializeWorkoutInfo(workoutInfo){           
-        loadRepCounterComponent("counter-area-insert", confirmCounterCallback, false, workoutInfo.sets[0]);
-        updateSetsInfo(workoutInfo.sets, 0);
-        workoutWeekSpan.innerHTML = `Semana ${workoutInfo.weekNumber}`;
-        workoutDaySpan.innerHTML = `Dia ${workoutInfo.dayNumber}`;
-        timerAreaDiv.style.display = "none";
+function initializeWorkoutInfo(workoutInfo) {
+  loadRepCounterComponent(
+    "counter-area-insert",
+    confirmCounterCallback,
+    false,
+    workoutInfo.sets[0]
+  );
+  updateSetsInfo(workoutInfo.sets, 0);
+  workoutWeekSpan.innerHTML = `Semana ${workoutInfo.weekNumber}`;
+  workoutDaySpan.innerHTML = `Dia ${workoutInfo.dayNumber}`;
+  timerAreaDiv.style.display = "none";
 
-        timerControlStop.addEventListener('click', stopTimer);
-        timerControlIncrement.addEventListener('click', incrementTimer);
+  timerControlStop.addEventListener("click", stopTimer);
+  timerControlIncrement.addEventListener("click", incrementTimer);
 
-        startDateTime = new Date();
+  startDateTime = new Date();
 }
 
-function getTotalWorkoutReps(){
-        var count = 0;
-        window.currentWorkout.sets.forEach(set => {
-                count += set;
-        });
-        return count;
+function getTotalWorkoutReps() {
+  var count = 0;
+  window.currentWorkout.sets.forEach((set) => {
+    count += set;
+  });
+  return count;
 }
 
-function updateSetsInfo(setsArray, targetSetIndex){
-        setsAreaDiv.innerHTML = "";
+function updateSetsInfo(setsArray, targetSetIndex) {
+  setsAreaDiv.innerHTML = "";
 
-        //Clamp
-        if(targetSetIndex < 0) targetSetIndex = 0;
-        if(targetSetIndex >= setsArray.length) targetSetIndex = setsArray.length - 1;
+  //Clamp
+  if (targetSetIndex < 0) targetSetIndex = 0;
+  if (targetSetIndex >= setsArray.length) targetSetIndex = setsArray.length - 1;
 
-        setsArray.forEach((setItem, index, arr) => {
-                var lastItem = index == arr.length - 1;
-                var currentItem = targetSetIndex == index;
-                var inactiveItem = index > targetSetIndex;
+  setsArray.forEach((setItem, index, arr) => {
+    var lastItem = index == arr.length - 1;
+    var currentItem = targetSetIndex == index;
+    var inactiveItem = index > targetSetIndex;
 
-                var setDiv = document.createElement('div');
-                setDiv.classList.add('reps');
-                setDiv.innerHTML = setItem;
-                if(lastItem)
-                        setDiv.innerHTML += "+";
+    var setDiv = document.createElement("div");
+    setDiv.classList.add("reps");
+    setDiv.innerHTML = setItem;
+    if (lastItem) setDiv.innerHTML += "+";
 
-                if(currentItem)
-                        setDiv.classList.add('active');
-                else if (inactiveItem)
-                        setDiv.classList.add('inactive');
+    if (currentItem) setDiv.classList.add("active");
+    else if (inactiveItem) setDiv.classList.add("inactive");
 
-                setsAreaDiv.appendChild(setDiv);
-        });
+    setsAreaDiv.appendChild(setDiv);
+  });
 }
 
-function advanceToNextSet(){
-        actualSetIndex++;
-        var nextSetValue = window.currentWorkout.sets[actualSetIndex];
-        if(actualSetIndex == window.currentWorkout.sets.length - 1)
-                nextSetValue = `${nextSetValue}+`;
-        updateCounterValue(nextSetValue);
-        updateSetsInfo(window.currentWorkout.sets, actualSetIndex);
+function advanceToNextSet() {
+  actualSetIndex++;
+  var nextSetValue = window.currentWorkout.sets[actualSetIndex];
+  if (actualSetIndex == window.currentWorkout.sets.length - 1)
+    nextSetValue = `${nextSetValue}+`;
+  updateCounterValue(nextSetValue);
+  updateSetsInfo(window.currentWorkout.sets, actualSetIndex);
 
-        instructionSpan.style.display = "";
-        timerAreaDiv.style.display = "none";
-        counterAreaDiv.style.display = "";
+  instructionSpan.style.display = "";
+  timerAreaDiv.style.display = "none";
+  counterAreaDiv.style.display = "";
 }
 
 //--------------------- TIMER ---------------------
 
-function enableTimer(){
-        instructionSpan.style.display = "none";
-        timerAreaDiv.style.display = "";
-        counterAreaDiv.style.display = "none";
+function enableTimer() {
+  instructionSpan.style.display = "none";
+  timerAreaDiv.style.display = "";
+  counterAreaDiv.style.display = "none";
 
-        startNewTimer(maxRestSeconds);
+  startNewTimer(maxRestSeconds);
 }
 
-function startNewTimer(totalSeconds){
-        timerInstance.removeEventListener('secondsUpdated', updateTimerVisual);
-        timerInstance.removeEventListener('targetAchieved', onTimerCountdownFinished);
+function startNewTimer(totalSeconds) {
+  timerInstance.removeEventListener("secondsUpdated", updateTimerVisual);
+  timerInstance.removeEventListener("targetAchieved", onTimerCountdownFinished);
 
-        timerInstance = new Timer();
-        timerInstance.start({countdown: true, startValues: {seconds: totalSeconds}});
-        updateTimerVisual();
+  timerInstance = new Timer();
+  timerInstance.start({
+    countdown: true,
+    startValues: { seconds: totalSeconds },
+  });
+  updateTimerVisual();
 
-        timerInstance.addEventListener('secondsUpdated', updateTimerVisual);
-        timerInstance.addEventListener('targetAchieved', onTimerCountdownFinished);
+  timerInstance.addEventListener("secondsUpdated", updateTimerVisual);
+  timerInstance.addEventListener("targetAchieved", onTimerCountdownFinished);
 }
 
-function updateTimerVisual(){
-        var minutes = timerInstance.getTimeValues().minutes.toLocaleString('pt-BR', {minimumIntegerDigits: 2, useGrouping: false});
-        var seconds = timerInstance.getTimeValues().seconds.toLocaleString('pt-BR', {minimumIntegerDigits: 2, useGrouping: false});
-        timerTextMinutesSpan.innerHTML = minutes;
-        timerTextSecondsSpan.innerHTML = seconds;
+function updateTimerVisual() {
+  var minutes = timerInstance.getTimeValues().minutes.toLocaleString("pt-BR", {
+    minimumIntegerDigits: 2,
+    useGrouping: false,
+  });
+  var seconds = timerInstance.getTimeValues().seconds.toLocaleString("pt-BR", {
+    minimumIntegerDigits: 2,
+    useGrouping: false,
+  });
+  timerTextMinutesSpan.innerHTML = minutes;
+  timerTextSecondsSpan.innerHTML = seconds;
 
-        var progressFactor = timerInstance.getTotalTimeValues().seconds / maxRestSeconds;
-        var percentage = Math.round(progressFactor * 100);
-        fillBarDiv.style.width = `${percentage}%`;
+  var progressFactor =
+    timerInstance.getTotalTimeValues().seconds / maxRestSeconds;
+  var percentage = Math.round(progressFactor * 100);
+  fillBarDiv.style.width = `${percentage}%`;
 }
 
-function stopTimer(){
-        if(timerInstance.getTotalTimeValues().seconds <= 1) return;
-        
-        timerInstance.pause();
-        onTimerCountdownFinished();
+function stopTimer() {
+  if (timerInstance.getTotalTimeValues().seconds <= 1) return;
+
+  timerInstance.pause();
+  onTimerCountdownFinished();
 }
 
-function incrementTimer(){
-        var remainingSeconds = timerInstance.getTotalTimeValues().seconds;
-        if(remainingSeconds <= 1) return;
+function incrementTimer() {
+  var remainingSeconds = timerInstance.getTotalTimeValues().seconds;
+  if (remainingSeconds <= 1) return;
 
-        startNewTimer(remainingSeconds+30);
+  startNewTimer(remainingSeconds + 30);
 }
 
-function onTimerCountdownFinished(){
-        advanceToNextSet();
+function onTimerCountdownFinished() {
+  advanceToNextSet();
 }
-
-
 
 //--------------------------------- Funções de teste ---------------------------------
 simulateWorkoutList();
-function simulateWorkoutList(){
-        window.currentWorkout = {
-                dayIndex: 0,
-                weekNumber: "1",
-                dayNumber: "2",
-                sets: [2, 3, 4, 5, 4]
-        };
+function simulateWorkoutList() {
+  window.currentWorkout = {
+    dayIndex: 0,
+    weekNumber: "1",
+    dayNumber: "2",
+    sets: [2, 3, 4, 5, 4],
+  };
 
-        initializeWorkoutInfo(window.currentWorkout);
+  initializeWorkoutInfo(window.currentWorkout);
 }
