@@ -85,7 +85,15 @@ export async function getWorkoutRoutineByCategory(request: Request, response: Re
         where: {
             usuario_id,
             categoria
-        }
+        },
+        orderBy: [
+            {
+                semana: 'asc'
+            },
+            {
+                dia_semana: 'asc'
+            }
+        ]
     });
 
     return response.json(workoutRoutine);
