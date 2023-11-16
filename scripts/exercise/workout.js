@@ -33,9 +33,6 @@ var finishDateTime = null;
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 
-const weekOfWorkout = urlParams.get("week");
-const dayOfWorkout = urlParams.get("day");
-
 const exerciseId = urlParams.get("exerciseId");
 
 function getExerciseNameFromUrl() {
@@ -68,8 +65,6 @@ async function registerWorkoutOnDatabase(workoutTotalTimeMs) {
     const response = await api.post("/workout/conclude", workoutData);
 
     if (response.status != 200) throw new Error(response.data.message);
-
-    console.log("workout data =>", workoutData);
   } catch (error) {
     console.log(error);
     alert("Erro ao registrar o treino");
@@ -86,9 +81,9 @@ function finishWorkout() {
   localStorage.setItem("lastWorkoutDurationMs", datetimeDiffMs);
 
   //mudar para página de treino concluído
-  // const url = new URL(`${baseUrl}/pages/exercise/completed.html`);
-  // url.searchParams.append('exercise', exerciseName);
-  // window.location.assign(url.toString());
+  const url = new URL(`${baseUrl}/pages/exercise/completed.html`);
+  url.searchParams.append('exercise', exerciseName);
+  window.location.assign(url.toString());
 }
 
 function initializeWorkoutInfo(workoutInfo) {
