@@ -3,12 +3,6 @@ import { Request, Response } from 'express';
 
 const prisma = new PrismaClient();
 
-type InputData = {
-    categoria: string;
-    usuario_id: string;
-    repeticoesIniciais: number;
-}
-
 export async function createRoutine(request: Request, response: Response) {
     const inputData = request.body as InputData;
 
@@ -51,14 +45,14 @@ export async function createRoutine(request: Request, response: Response) {
     return response.status(200).json({ message: 'Rotina de treino criada com sucesso' });
 }
 
-type Workout = {
-    id: number,
-    tempo_total: number,
-};
-
 export async function concludeWorkout(request: Request, response: Response) {
-
     const inputData = request.body as Workout;
+
+    if (!inputData.id || !inputData.tempo_total) {
+        throw new Error('Dados inválidos, os campos id e tempo_total são obrigatórios');
+    }
+
+    const { tempo_total } = inputData;
 
     await prisma.treinos.update({
         where: {
@@ -66,12 +60,10 @@ export async function concludeWorkout(request: Request, response: Response) {
         },
         data: {
             data_conclusao: new Date(),
-            tempo_total: inputData.tempo_total,
-            concluido: true
+            concluido: true,
+            tempo_total
         }
     });
-
-    console.log('request.body', request.body);
 
     return response.status(200).json({ message: 'Exercício concluído com sucesso' });
 }
@@ -96,11 +88,48 @@ export async function getWorkoutRoutineByCategory(request: Request, response: Re
         ]
     });
 
-    return response.json(workoutRoutine);
+    return response.status(200).json(workoutRoutine);
+}
+
+export async function getWorkoutStats(request: Request, response: Response) {
+    const { usuario_id, categoria } = request.params;
+
+    await validateInputData({ usuario_id, categoria });
+
+    const workoutStats = await prisma.treinos.findMany({
+        where: {
+            usuario_id,
+            categoria,
+            concluido: true
+        },
+        select: {
+            tempo_total: true,
+            categoria: true,
+            data_conclusao: true,
+            repeticoes: true
+        },
+        orderBy: {
+            data_conclusao: 'desc'
+        }
+    });
+
+    const parsedData = workoutStats.map(workout => {
+        const { tempo_total, data_conclusao, repeticoes } = workout;
+
+        const totalReps = repeticoes.reduce((acc, curr) => acc + curr, 0);
+
+        return {
+            ...workout,
+            date: data_conclusao?.toLocaleDateString('pt-BR', { timeZone: 'UTC' }),
+            reps: totalReps,
+            time: secondsToTime(tempo_total ?? 0)
+        }
+    });
+
+    return response.status(200).json(parsedData);
 }
 
 async function getExerciceLevelingFactor(exercice: string): Promise<number> {
-
     const exerciceLevelingFactor = await prisma.categorias.findUnique({
         where: {
             nome: exercice
@@ -144,3 +173,24 @@ async function validateInputData(inputData: Omit<InputData, 'repeticoesIniciais'
         throw new Error('Usuário não encontrado');
     }
 }
+
+const secondsToTime = (seconds: number) => {
+    const miliseconds = seconds * 1000;
+    const date = new Date(miliseconds);
+
+    const minutes = date.getUTCMinutes();
+    const remainingSeconds = date.getUTCSeconds();
+
+    return `${minutes}:${remainingSeconds}`;
+}
+
+type Workout = {
+    id: number,
+    tempo_total: number,
+};
+
+type InputData = {
+    categoria: string;
+    usuario_id: string;
+    repeticoesIniciais: number;
+};
