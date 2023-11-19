@@ -11,21 +11,13 @@ function initializeOptions() {
     const element = document.getElementsByClassName(`workout ${exercise}`)[0];
     element.addEventListener("click", () => exerciseClickEvent(exercise));
   });
-}
-
-const convertExerciseName = {
-  flexao: "FLEXÃO",
-  agachamento: "AGACHAMENTO",
-  abdominal: "ABDOMINAL",
-  triceps: "TRÍCEPS",
 };
 
 async function exerciseClickEvent(exerciseName) {
   try {
     const { id } = await getUserData();
-    const exercise = convertExerciseName[exerciseName];
 
-    const response = await api.get(`/workout/${id}/${exercise}`);
+    const response = await api.get(`/workout/${id}/${exerciseName}`);
 
     const hasWorkout = !!response.data.length;
     const redirectPage = hasWorkout ? "sets.html" : "leveling.html";
