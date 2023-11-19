@@ -1,6 +1,35 @@
 #content{
-        row-gap: 4vh;
+        row-gap: 2vh;
+        padding-top: 0 !important;
 }
+
+#instruction #reset-button{
+        position: absolute;
+        top: 1.5vh;
+        right: 3vw;
+        background-color: rgb(24, 81, 146);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        column-gap: 1vw;
+        padding: 0 2vw;
+        border-radius: 1vh;
+        color: #dddddd;
+        font-size: 2.4vh;
+        box-shadow: 2px 3px 12px 0px rgba(0, 0, 0, 0.3);
+
+        transition: all 0.2s;
+}
+#instruction #reset-button svg{
+        aspect-ratio: 1;
+        height: 2.0vh;
+        fill: #dddddd;
+}
+#instruction #reset-button:active{
+        opacity: 0.7;
+}
+
 #content #list{
         width: 100%;
 }
@@ -105,4 +134,32 @@ button#confirm span{
         font-size: 3.4vh;
         font-weight: 400;
         color: white;
+}
+
+/* MODAL */
+.modal-content {
+        width: 83vw;
+        margin: 0 auto;
+
+        background-color: rgb(24, 26, 27);
+        border-color: rgba(140, 130, 115, 0.2);
+        font-size: 2.1vh;
+        text-align: center;
+}
+.modal-content .close {
+        color: rgb(232, 230, 227);
+        text-shadow: rgb(24, 26, 27) 0px 1px 0px;
+    }
+/* .modal-content .btn-primary, .btn-primary:hover, .btn-primary:active {
+        color: rgb(232, 230, 227);
+        background-color: rgb(224, 28, 28);
+        border-color: rgb(179, 0, 0);
+} */
+.modal-title{
+        font-size: 2.6vh;
+        text-align: center;
+}
+.modal-backdrop
+{
+    opacity:0.85 !important;
 }

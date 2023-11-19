@@ -26,6 +26,14 @@ const list = document.getElementById("list");
 const confirmButton = document.getElementById("confirm");
 confirmButton.addEventListener("click", () => onConfirmButtonClick());
 
+
+const confirmResetButton = document.getElementById("confirm-reset-button");
+confirmResetButton.addEventListener("click", () => onResetWorkoutButtonClick());
+
+function onResetWorkoutButtonClick(){
+  console.log("Reiniciando treino...");
+}
+
 //Gera os itens de carousel baseados na lista providenciada (workoutList: lista de workouts, lastCompletedDayIndex: index do último workout concluído)
 function spawnWorkoutItems(workoutList, lastCompletedDayIndex) {
   list.innerHTML = "";
@@ -117,10 +125,6 @@ function startWorkout(workoutDayIndex) {
   console.log(`Start workout index ${workoutDayIndex}`);
 
   //AQUI VEM A LÓGICA PARA INICIAR O TREINO A PARTIR DO INDEX
-  //
-  //
-  //
-  //
   const url = new URL(`${baseUrl}/pages/exercise/workout.html`);
   url.searchParams.append("exercise", exerciseName);
   url.searchParams.append("exerciseId", exerciseId);
