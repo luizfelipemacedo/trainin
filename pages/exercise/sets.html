@@ -32,6 +32,12 @@
         <div id="exercise-info">
             <div id="exercise-name">Name</div>
         </div>
+        <div id="reset-button" data-toggle="modal" data-target="#reset-workout-modal">
+            <svg version="1.1" viewBox="0 0 122 122" xmlns="http://www.w3.org/2000/svg">
+                <path class="st0" d="m4.73 9.3v39.28h39.28 4.63l-3.27-3.28-11.46-11.45c0.76-0.73 1.54-1.44 2.36-2.11 1.08-0.88 2.22-1.72 3.38-2.48 6.02-3.92 13.21-6.21 20.94-6.21h0.01v-0.01c10.59 0 20.18 4.3 27.12 11.24s11.24 16.53 11.24 27.11h-0.01v0.05h0.01c0 10.59-4.3 20.19-11.24 27.12-6.94 6.94-16.53 11.24-27.11 11.24v-0.01h-0.08v0.01c-3.7 0-7.39-0.54-10.93-1.59-1.95-0.58-3.87-1.33-5.71-2.22-9.39-4.54-16.65-12.8-19.87-22.87l-0.43-1.33-23.59 0.03 0.47 2.3 0.01 0.06v0.01c0.8 3.84 2 7.62 3.53 11.24v0.01c1.51 3.55 3.38 6.98 5.53 10.19 11.03 16.43 29.78 27.25 51.05 27.25h0.01v-0.01c16.96 0 32.33-6.88 43.43-17.99v-0.01c11.1-11.11 17.98-26.45 17.98-43.4h0.01v-0.05h-0.01c0-16.96-6.88-32.32-18-43.43-11.08-11.1-26.43-17.97-43.38-17.98v-0.01h-0.06v0.01c-8.71 0-17.01 1.82-24.51 5.1-1.21 0.53-2.42 1.11-3.6 1.71-5.48 2.83-10.47 6.46-14.83 10.74l-9.63-9.61-3.27-3.28v4.63z"/></svg>
+            </svg>
+            Reiniciar
+        </div>
     </div>
     <div id="content">
         <div id="info">
@@ -68,6 +74,27 @@
 
         <button id="confirm"><span>Iniciar</span></button>
     </div>
+
+    <div id="reset-workout-modal" class="modal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Reiniciar progresso?</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <p>Você deseja reiniciar todo<br>progresso deste treino?</p>
+                <p>O nivelamento será executado novamente.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+              <button type="button" id="confirm-reset-button" class="btn btn-primary">Sim, quero reiniciar</button>
+            </div>
+          </div>
+        </div>
+      </div>
 </body>
 <script type="module" src="/scripts/exercise/loadExerciseInfo.js" type="module"></script>
 <script type="module" src="/scripts/exercise/sets.js" type="module"></script>
