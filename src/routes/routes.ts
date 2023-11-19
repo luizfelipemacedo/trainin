@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { deleteUserById } from "../controllers/user";
-import { concludeWorkout, createRoutine, getWorkoutRoutineByCategory, getWorkoutStats } from "../controllers/workout";
+import { concludeWorkout, createRoutine, deleteWorkout, getWorkoutRoutineByCategory, getWorkoutStats } from "../controllers/workout";
 
 const routes = Router();
 
@@ -8,9 +8,10 @@ const routes = Router();
 routes.delete('/user/:id', deleteUserById);
 
 //workout routes
-routes.post('/workout/create-routine', createRoutine);
-routes.post('/workout/conclude', concludeWorkout);
 routes.get('/workout/:usuario_id/:categoria', getWorkoutRoutineByCategory);
 routes.get('/workout/stats/:usuario_id/:categoria', getWorkoutStats);
+routes.post('/workout/conclude', concludeWorkout);
+routes.post('/workout/create-routine', createRoutine);
+routes.delete('/workout/delete/:usuario_id/:categoria', deleteWorkout);
 
 export default routes;

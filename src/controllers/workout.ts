@@ -5,36 +5,34 @@ const prisma = new PrismaClient();
 
 export async function createRoutine(request: Request, response: Response) {
     const inputData = request.body as InputData;
+    const parsedCategoryName = parseCategoryName(inputData.categoria);
 
-    await validateInputData(inputData);
+    await validateInputData({ ...inputData, categoria: parsedCategoryName });
+
+    const { usuario_id, repeticoesIniciais: inicialReps } = inputData;
+
+    if (!inicialReps) throw new Error('Dados inválidos, o campo repeticoesIniciais é obrigatório')
 
     const weeks = 2;
     const daysPerWeek = 3;
-    const totalDays = weeks * daysPerWeek;
 
-    const routineDays = Array.from({ length: totalDays })
-        .map((_, index) => ({
-            semana: Math.floor(index / daysPerWeek) + 1,
-            dia: index % daysPerWeek + 1
-        }));
+    const routineDays = generateRoutineDays(weeks, daysPerWeek);
 
-    const { categoria, usuario_id, repeticoesIniciais } = inputData;
-
-    if (!repeticoesIniciais) throw new Error('Dados inválidos, o campo repeticoesIniciais é obrigatório')
-
-    const fatorNivelamento = await getExerciceLevelingFactor(categoria);
+    const levelingFactor = await getExerciceLevelingFactor(parsedCategoryName);
+    const dailyIncrements = [0.41, 0.52, 0.41, 0.36, 0.56];
 
     const workoutRoutine = routineDays.map((routineDay, index) => {
-        const incrementoDiario = 1;
-        const repeticoes = Array.from({ length: 5 })
-            .map((_, index) => Math.round(repeticoesIniciais * Math.pow(fatorNivelamento, index) + incrementoDiario * index));
+        const dailyIncrement = dailyIncrements[index % dailyIncrements.length];
+        const repeticoes = calculateRepetitions(inicialReps, levelingFactor, dailyIncrement, index);
+
+        const { dia: dia_semana, semana } = routineDay;
 
         return {
-            dia_semana: routineDay.dia,
-            semana: routineDay.semana,
-            categoria,
+            categoria: parsedCategoryName,
+            dia_semana,
             usuario_id,
-            repeticoes: repeticoes.map(repeticao => repeticao + index)
+            repeticoes,
+            semana
         };
     });
 
@@ -68,15 +66,33 @@ export async function concludeWorkout(request: Request, response: Response) {
     return response.status(200).json({ message: 'Exercício concluído com sucesso' });
 }
 
+export async function deleteWorkout(request: Request, response: Response) {
+    const { usuario_id, categoria } = request.params;
+
+    const parsedCategoryName = parseCategoryName(categoria);
+    await validateInputData({ usuario_id, categoria: parsedCategoryName });    
+
+    await prisma.treinos.deleteMany({
+        where: {
+            usuario_id: usuario_id,
+            categoria: parsedCategoryName
+        }
+    });    
+
+    return response.status(200)
+        .json({ message: `Rotina de treinos de ${parsedCategoryName} apagados com sucesso!` });
+}
+
 export async function getWorkoutRoutineByCategory(request: Request, response: Response) {
     const { usuario_id, categoria } = request.params;
 
-    await validateInputData({ usuario_id, categoria });
+    const parsedCategoryName = parseCategoryName(categoria);
+    await validateInputData({ usuario_id, categoria: parsedCategoryName });
 
     const workoutRoutine = await prisma.treinos.findMany({
         where: {
-            usuario_id,
-            categoria
+            categoria: parsedCategoryName,
+            usuario_id
         },
         orderBy: [
             {
@@ -94,13 +110,14 @@ export async function getWorkoutRoutineByCategory(request: Request, response: Re
 export async function getWorkoutStats(request: Request, response: Response) {
     const { usuario_id, categoria } = request.params;
 
-    await validateInputData({ usuario_id, categoria });
+    const parsedCategoryName = parseCategoryName(categoria);
+    await validateInputData({ usuario_id, categoria: parsedCategoryName });
 
     const workoutStats = await prisma.treinos.findMany({
         where: {
-            usuario_id,
-            categoria,
-            concluido: true
+            categoria: parsedCategoryName,
+            concluido: true,
+            usuario_id
         },
         select: {
             tempo_total: true,
@@ -122,7 +139,7 @@ export async function getWorkoutStats(request: Request, response: Response) {
             ...workout,
             date: data_conclusao?.toLocaleDateString('pt-BR', { timeZone: 'UTC' }),
             reps: totalReps,
-            time: secondsToTime(tempo_total ?? 0)
+            time: milisecondsToTime(tempo_total ?? 0)
         }
     });
 
@@ -174,14 +191,44 @@ async function validateInputData(inputData: Omit<InputData, 'repeticoesIniciais'
     }
 }
 
-const secondsToTime = (seconds: number) => {
-    const miliseconds = seconds * 1000;
+const generateRoutineDays = (weeks: number, daysPerWeek: number) => {
+    const totalDays = weeks * daysPerWeek;
+
+    const routineDays = Array.from({ length: totalDays })
+        .map((_, index) => ({
+            semana: Math.floor(index / daysPerWeek) + 1,
+            dia: index % daysPerWeek + 1
+        }));
+
+    return routineDays;
+}
+
+const calculateRepetitions = (inicialReps: number, levelingFactor: number, dailyIncrement: number, index: number) => {
+    return Array.from({ length: 5 })
+        .map((_, index) => Math.round(inicialReps * Math.pow(levelingFactor, index) + dailyIncrement * index))
+        .map(repeticao => repeticao + index);
+}
+
+const milisecondsToTime = (miliseconds: number) => {
     const date = new Date(miliseconds);
 
     const minutes = date.getUTCMinutes();
-    const remainingSeconds = date.getUTCSeconds();
+    const remainingSeconds = date.getSeconds();
 
     return `${minutes}:${remainingSeconds}`;
+}
+
+const parseCategoryName = (category: string) => {
+    const categorys = {
+        flexao: 'FLEXÃO',
+        abdominal: 'ABDOMINAL',
+        agachamento: 'AGACHAMENTO',
+        triceps: 'TRÍCEPS',
+    };
+
+    const parsedCategoryName = categorys[category as keyof typeof categorys];
+
+    return parsedCategoryName;
 }
 
 type Workout = {
