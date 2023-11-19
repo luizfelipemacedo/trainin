@@ -1,8 +1,10 @@
-import baseUrl from "../../config/baseUrl";
 import api from "../../config/api.js";
+import baseUrl from "../../config/baseUrl";
 import { getUserData } from "../../auth/userData.js";
 
 var exerciseName = getExerciseNameFromUrl();
+let exerciseId = '';
+
 function getExerciseNameFromUrl() {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
@@ -121,6 +123,7 @@ function startWorkout(workoutDayIndex) {
   //
   const url = new URL(`${baseUrl}/pages/exercise/workout.html`);
   url.searchParams.append("exercise", exerciseName);
+  url.searchParams.append("exerciseId", exerciseId);
   window.location.assign(url.toString());
 }
 
@@ -194,11 +197,6 @@ const convertExerciseName = {
 
     const response = await api.get(`/workout/${id}/${exercise}`);
 
-    if (!response.data.length) {
-      await createWorkout(id, exercise);
-      return;
-    }
-
     const workoutList = response.data.map((workout, index) => {
       return {
         ...workout,
@@ -209,9 +207,11 @@ const convertExerciseName = {
       };
     });
 
-    const lastCompletedDayIndex = workoutList.findIndex(
-      (workout) => workout.concluido === true
-    );
+    const filterLastCompleted = workoutList.filter((workout) => workout.concluido === true);
+    const lastCompletedDayIndex = !filterLastCompleted.length ? -1 : filterLastCompleted.at(-1).dayIndex;
+
+    // Seta o id do exercício para ser usado na página de workout
+    exerciseId = workoutList[lastCompletedDayIndex + 1].id;
 
     spawnWorkoutItems(workoutList, lastCompletedDayIndex);
   } catch (error) {
@@ -219,8 +219,3 @@ const convertExerciseName = {
     alert("Erro ao carregar treinos");
   }
 })();
-
-async function createWorkout(id, exercise) {
-  try {
-  } catch (error) {}
-}
