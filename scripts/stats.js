@@ -2,12 +2,6 @@ import api from "../config/api";
 import { getUserData } from "../auth/userData";
 
 const list = document.getElementById("list");
-const convertExerciseName = {
-  flexao: "FLEXÃO",
-  agachamento: "AGACHAMENTO",
-  abdominal: "ABDOMINAL",
-  triceps: "TRÍCEPS",
-};
 
 initializeOptions();
 
@@ -44,7 +38,7 @@ async function requestStatsByExercise(exerciseName) {
     const { id } = await getUserData();
 
     const response = await api.get(
-      `/workout/stats/${id}/${convertExerciseName[exerciseName]}`
+      `/workout/stats/${id}/${exerciseName}`
     );
     const statsList = response.data;
 

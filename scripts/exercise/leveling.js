@@ -15,7 +15,7 @@ async function confirmCounterCallback(selectedValue) {
   console.log("Counter confirmado: " + selectedValue);
   try {
     const { id } = await getUserData();
-    const exercise = convertExerciseName[getExerciseNameFromUrl()];
+    const exercise = getExerciseNameFromUrl();
 
     const response = await api.post(`/workout/create-routine`, {
       categoria: exercise,
@@ -36,10 +36,3 @@ async function confirmCounterCallback(selectedValue) {
     alert("Erro ao salvar rotina");
   }
 }
-
-const convertExerciseName = {
-  flexao: "FLEXÃO",
-  agachamento: "AGACHAMENTO",
-  abdominal: "ABDOMINAL",
-  triceps: "TRÍCEPS",
-};

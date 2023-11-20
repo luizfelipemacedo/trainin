@@ -26,6 +26,29 @@ const list = document.getElementById("list");
 const confirmButton = document.getElementById("confirm");
 confirmButton.addEventListener("click", () => onConfirmButtonClick());
 
+
+const confirmResetButton = document.getElementById("confirm-reset-button");
+confirmResetButton.addEventListener("click", () => onResetWorkoutButtonClick());
+
+async function onResetWorkoutButtonClick(){
+  try {
+    const { id } = await getUserData();
+    const exerciseName = getExerciseNameFromUrl();
+
+    const response = await api.delete(`/workout/delete/${id}/${exerciseName}`);
+
+    if (response.status === 200 && response.data.message) alert(response.data.message);
+      
+    const url = new URL(`${baseUrl}/pages/exercise/leveling.html`);
+    url.searchParams.append("exercise", exerciseName);
+    window.location.assign(url.toString());
+    
+  } catch (error) {
+    console.log(error);
+    alert("Erro ao reiniciar treino");
+  }
+}
+
 //Gera os itens de carousel baseados na lista providenciada (workoutList: lista de workouts, lastCompletedDayIndex: index do último workout concluído)
 function spawnWorkoutItems(workoutList, lastCompletedDayIndex) {
   list.innerHTML = "";
@@ -117,10 +140,6 @@ function startWorkout(workoutDayIndex) {
   console.log(`Start workout index ${workoutDayIndex}`);
 
   //AQUI VEM A LÓGICA PARA INICIAR O TREINO A PARTIR DO INDEX
-  //
-  //
-  //
-  //
   const url = new URL(`${baseUrl}/pages/exercise/workout.html`);
   url.searchParams.append("exercise", exerciseName);
   url.searchParams.append("exerciseId", exerciseId);
@@ -183,17 +202,10 @@ function simulateWorkoutList() {
   spawnWorkoutItems(testWorkoutList, lastCompletedDayIndex);
 }
 
-const convertExerciseName = {
-  flexao: "FLEXÃO",
-  agachamento: "AGACHAMENTO",
-  abdominal: "ABDOMINAL",
-  triceps: "TRÍCEPS",
-};
-
 (async () => {
   try {
     const { id } = await getUserData();
-    const exercise = convertExerciseName[getExerciseNameFromUrl()];
+    const exercise = getExerciseNameFromUrl();
 
     const response = await api.get(`/workout/${id}/${exercise}`);
 
