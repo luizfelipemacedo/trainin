@@ -98,12 +98,12 @@ function spawnWorkoutItems(workoutList, lastCompletedDayIndex) {
       setsAreaDiv.appendChild(setDiv);
     });
 
-    if (isCompletedWorkout || isLockedWorkout) {
-      var lockedDiv = document.createElement("div");
-      lockedDiv.classList.add("locked-item");
-      lockedDiv.innerHTML = isCompletedWorkout ? "Concluído" : "Indisponível";
-      exerciseItem.appendChild(lockedDiv);
+    var lockedDiv = document.createElement("div");      
+    lockedDiv.classList.add("locked-item");
 
+    if (isCompletedWorkout || isLockedWorkout) {
+      lockedDiv.innerHTML = isCompletedWorkout ? "Concluído" : "Indisponível";
+      
       carouselItem.addEventListener("startWorkoutEvent", () =>
         lockedWorkoutWarning(
           isCompletedWorkout
@@ -112,10 +112,14 @@ function spawnWorkoutItems(workoutList, lastCompletedDayIndex) {
         )
       );
     } //no momento, permita iniciar apenas workouts atuais
-    else
+    else{
       carouselItem.addEventListener("startWorkoutEvent", () =>
         startWorkout(workoutItem.dayIndex)
       );
+      lockedDiv.classList.add("empty");
+    }
+    exerciseItem.appendChild(lockedDiv);
+
     //futuramente talvez desbloquear para refazer workouts concluídos e futuros
 
     list.appendChild(carouselItem);
@@ -152,7 +156,7 @@ function lockedWorkoutWarning(message) {
 }
 
 //Funções de teste---------------------------------
-// simulateWorkoutList();
+//simulateWorkoutList();
 function simulateWorkoutList() {
   var workout1 = {
     dayIndex: 0,

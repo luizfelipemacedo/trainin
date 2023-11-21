@@ -2,6 +2,7 @@ import api from "../config/api";
 import { getUserData } from "../auth/userData";
 
 const list = document.getElementById("list");
+list.innerHTML = "";
 
 initializeOptions();
 
@@ -122,7 +123,7 @@ function spawnStatsItems(statsList) {
 }
 
 //Funções de teste---------------------------------
-// simulateWorkoutList();
+//simulateWorkoutList();
 function simulateWorkoutList() {
   var stat1 = {
     date: "02/11/2023",

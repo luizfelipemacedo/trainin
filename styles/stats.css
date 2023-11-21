@@ -1,3 +1,8 @@
+body{
+        position: relative;
+        overflow: visible;
+}
+
 #content{
         position: relative;
         display: flex;
