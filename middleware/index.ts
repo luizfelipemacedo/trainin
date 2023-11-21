@@ -56,7 +56,7 @@ export async function errorHandler(error: Error, request: Request, response: Res
 
       <b>🕤 DATA E HORA:</b>
       <pre>
-      ${new Date().toLocaleString('pt-BR')}
+      ${new Date().toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' })}
       </pre>`;
 
       await bot.telegram.sendMessage(process.env.TELEGRAM_CHAT_ID as string, errorMessage, { parse_mode: 'HTML' });
