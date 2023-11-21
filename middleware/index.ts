@@ -35,7 +35,8 @@ export async function errorHandler(error: Error, request: Request, response: Res
   console.error(error);
 
   if (IS_PRODUCTION) {
-    const errorMessage = `
+    try {
+      const errorMessage = `
       <b>🚨 ERRO DETECTADO NA APLICAÇÃO</b>
 
       <b>🌐 IP DO USUÁRIO:</b>
@@ -58,9 +59,12 @@ export async function errorHandler(error: Error, request: Request, response: Res
       ${new Date().toLocaleString('pt-BR')}
       </pre>`;
 
-    bot.telegram.sendMessage(process.env.TELEGRAM_CHAT_ID as string, errorMessage, { parse_mode: 'HTML' });
+      await bot.telegram.sendMessage(process.env.TELEGRAM_CHAT_ID as string, errorMessage, { parse_mode: 'HTML' });
+    } catch (error) {
+      console.error('Erro ao enviar mesagem para o Telegram: ', error);
+    }
   };
-  
+
   if (error instanceof Error) {
     return response.status(400).send({ message: error.message });
   };
