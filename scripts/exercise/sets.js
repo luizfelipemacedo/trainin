@@ -1,6 +1,8 @@
 import api from "../../config/api.js";
 import baseUrl from "../../config/baseUrl";
 import { getUserData } from "../../auth/userData.js";
+import { showLoadingComponent } from "/components/loading/loading.js";
+import { hideLoadingComponent } from "/components/loading/loading.js";
 
 var exerciseName = getExerciseNameFromUrl();
 let exerciseId = '';
