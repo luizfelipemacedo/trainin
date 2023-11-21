@@ -3,13 +3,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 body{
+        position: absolute;
         font-family: 'Outfit';
         font-style: normal;
         user-select: none; /* disable selection for all objects*/
         overscroll-behavior: contain;
         color: white;
         padding: 0;
-        margin: 0;        
+        margin: 0;
+        height: 99%;
+        width: 100%;
+        overflow: hidden;
+        background-color: #1c1d1f;
 }
 body::-webkit-scrollbar{
         display: none;
@@ -46,9 +51,10 @@ img {
         left: 0;
         bottom: 0;
         right: 0;
-        background: #1c1d1f;
+        background-color: #1c1d1f;
         width: 100%;
         z-index: -999;
+        overflow: hidden;
 }
 h1, h2, h3{
         color: white;
@@ -95,11 +101,12 @@ h1, h2, h3{
 #content{
         width: 100%;
         top: 0;
-        bottom: 0;
+        bottom: 1%;
         z-index: 0;
         position: absolute;
+        margin: 0;
         padding-top: 4vh;
-        padding-bottom: 12vh;
+        padding-bottom: 10vh;
         margin-top: 8vh;
         box-sizing: border-box;
 }
