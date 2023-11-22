@@ -1,6 +1,8 @@
 import api from "../config/api.js";
 import baseUrl from "../config/baseUrl";
 import { getUserData } from "../auth/userData.js";
+import { showLoadingComponent } from "/components/loading/loading.js";
+import { hideLoadingComponent } from "/components/loading/loading.js";
 
 initializeOptions();
 
@@ -17,8 +19,10 @@ async function exerciseClickEvent(exerciseName) {
   try {
     const { id } = await getUserData();
 
+    showLoadingComponent();
     const response = await api.get(`/workout/${id}/${exerciseName}`);
-
+    hideLoadingComponent();
+    
     const hasWorkout = !!response.data.length;
     const redirectPage = hasWorkout ? "sets.html" : "leveling.html";
 
