@@ -28,8 +28,6 @@ async function confirmCounterCallback(selectedValue) {
       repeticoesIniciais: selectedValue,
     });
 
-    hideLoadingComponent();
-
     if (response.status !== 200) {
       alert("Erro ao salvar rotina");
       return;
@@ -41,5 +39,8 @@ async function confirmCounterCallback(selectedValue) {
   } catch (error) {
     console.log(error);
     alert("Erro ao salvar rotina");
+  }
+  finally{
+    hideLoadingComponent();
   }
 }

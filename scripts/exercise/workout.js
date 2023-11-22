@@ -66,12 +66,14 @@ async function registerWorkoutOnDatabase(workoutTotalTimeMs) {
 
     showLoadingComponent();
     const response = await api.post("/workout/conclude", workoutData);
-    hideLoadingComponent();
 
     if (response.status != 200) throw new Error(response.data.message);
   } catch (error) {
     console.log(error);
     alert("Erro ao registrar o treino");
+  }
+  finally{
+    hideLoadingComponent();
   }
 }
 

@@ -40,7 +40,6 @@ async function onResetWorkoutButtonClick(){
 
     showLoadingComponent();
     const response = await api.delete(`/workout/delete/${id}/${exerciseName}`);
-    hideLoadingComponent();
 
     if (response.status === 200 && response.data.message) alert(response.data.message);
       
@@ -51,6 +50,9 @@ async function onResetWorkoutButtonClick(){
   } catch (error) {
     console.log(error);
     alert("Erro ao reiniciar treino");
+  }
+  finally{
+    hideLoadingComponent();
   }
 }
 

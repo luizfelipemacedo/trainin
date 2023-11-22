@@ -21,7 +21,6 @@ async function exerciseClickEvent(exerciseName) {
 
     showLoadingComponent();
     const response = await api.get(`/workout/${id}/${exerciseName}`);
-    hideLoadingComponent();
     
     const hasWorkout = !!response.data.length;
     const redirectPage = hasWorkout ? "sets.html" : "leveling.html";
@@ -33,5 +32,8 @@ async function exerciseClickEvent(exerciseName) {
   } catch (error) {
     console.log(error);
     alert("Erro ao buscar rotina");
+  }
+  finally{
+    hideLoadingComponent();
   }
 }

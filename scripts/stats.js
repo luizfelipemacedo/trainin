@@ -44,7 +44,6 @@ async function requestStatsByExercise(exerciseName) {
     const response = await api.get(
       `/workout/stats/${id}/${exerciseName}`
     );
-    hideLoadingComponent();
     
     const statsList = response.data;
 
@@ -52,6 +51,9 @@ async function requestStatsByExercise(exerciseName) {
   } catch (error) {
     console.log(error);
     alert("Erro ao buscar estatísticas");
+  }
+  finally{
+    hideLoadingComponent();
   }
 }
 
