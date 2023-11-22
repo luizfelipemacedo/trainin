@@ -2,6 +2,7 @@ import { PrismaClient } from '@prisma/client';
 import { Request, Response } from 'express';
 
 const prisma = new PrismaClient();
+function clamp(num : number, min: number, max: number) : number { return Math.min(Math.max(num, min), max);}
 
 export async function createRoutine(request: Request, response: Response) {
     const inputData = request.body as InputData;
@@ -13,17 +14,18 @@ export async function createRoutine(request: Request, response: Response) {
 
     if (!inicialReps) throw new Error('Dados inválidos, o campo repeticoesIniciais é obrigatório')
 
-    const weeks = 2;
+    const weeks = 4;
     const daysPerWeek = 3;
 
     const routineDays = generateRoutineDays(weeks, daysPerWeek);
 
+    const levelingReps = clamp(inicialReps, 1, 80);
     const levelingFactor = await getExerciceLevelingFactor(parsedCategoryName);
     const dailyIncrements = [0.41, 0.52, 0.41, 0.36, 0.56];
 
     const workoutRoutine = routineDays.map((routineDay, index) => {
-        const dailyIncrement = dailyIncrements[index % dailyIncrements.length];
-        const repeticoes = calculateRepetitions(inicialReps, levelingFactor, dailyIncrement, index);
+        //const dailyIncrement = dailyIncrements[index % dailyIncrements.length];
+        const repeticoes = calculateRepetitions(levelingReps, levelingFactor, dailyIncrements, index);
 
         const { dia: dia_semana, semana } = routineDay;
 
@@ -203,10 +205,10 @@ const generateRoutineDays = (weeks: number, daysPerWeek: number) => {
     return routineDays;
 }
 
-const calculateRepetitions = (inicialReps: number, levelingFactor: number, dailyIncrement: number, index: number) => {
+const calculateRepetitions = (inicialReps: number, levelingFactor: number, dailyIncrements: number[], index: number) => {
     return Array.from({ length: 5 })
-        .map((_, index) => Math.round(inicialReps * Math.pow(levelingFactor, index) + dailyIncrement * index))
-        .map(repeticao => repeticao + index);
+    .map((_, index) => clamp(Math.round(inicialReps * dailyIncrements[index] * Math.pow(levelingFactor, index)), 1, 100))
+    .map(repeticao => repeticao + index);
 }
 
 const milisecondsToTime = (miliseconds: number) => {
