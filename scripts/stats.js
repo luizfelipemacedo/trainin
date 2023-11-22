@@ -1,5 +1,7 @@
 import api from "../config/api";
 import { getUserData } from "../auth/userData";
+import { showLoadingComponent } from "/components/loading/loading.js";
+import { hideLoadingComponent } from "/components/loading/loading.js";
 
 const list = document.getElementById("list");
 list.innerHTML = "";
@@ -38,9 +40,12 @@ async function requestStatsByExercise(exerciseName) {
   try {
     const { id } = await getUserData();
 
+    showLoadingComponent();
     const response = await api.get(
       `/workout/stats/${id}/${exerciseName}`
     );
+    hideLoadingComponent();
+    
     const statsList = response.data;
 
     spawnStatsItems(statsList);
