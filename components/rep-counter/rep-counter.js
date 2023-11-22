@@ -38,18 +38,18 @@ function initializeRepCounter(htmlContent, parentDivId, confirmCounterCallback, 
         updateCounter();
     
         function increaseCounter(){
-                counterValue = clamp(counterValue + 1, 0, 99);
+                counterValue = clamp(counterValue + 1, 1, 99);
                 updateCounter();
         }
         function decreaseCounter(){
-                counterValue = clamp(counterValue - 1, 0, 99);
+                counterValue = clamp(counterValue - 1, 1, 99);
                 updateCounter();
         }
         function updateCounter(){
                 counterText.innerHTML = counterValue;
         }
         function confirmCounter(){
-                counterValue = clamp(counterValue, 0, 99);
+                counterValue = clamp(counterValue, 1, 99);
                 confirmCounterCallback(counterValue);
         }
         const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
