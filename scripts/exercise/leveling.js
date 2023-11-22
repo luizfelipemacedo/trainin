@@ -4,7 +4,9 @@ import { getUserData } from "../../auth/userData.js";
 import { showLoadingComponent } from "/components/loading/loading.js";
 import { hideLoadingComponent } from "/components/loading/loading.js";
 import { loadRepCounterComponent } from "/components/rep-counter/rep-counter.js";
+import { initializeBackButton } from "/scripts/general.js";
 
+initializeBackButton("pages/home.html");
 loadRepCounterComponent("counter-area-insert", confirmCounterCallback);
 
 var exerciseName = getExerciseNameFromUrl();

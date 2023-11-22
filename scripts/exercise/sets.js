@@ -3,6 +3,9 @@ import baseUrl from "../../config/baseUrl";
 import { getUserData } from "../../auth/userData.js";
 import { showLoadingComponent } from "/components/loading/loading.js";
 import { hideLoadingComponent } from "/components/loading/loading.js";
+import { initializeBackButton } from "/scripts/general.js";
+
+initializeBackButton("pages/home.html");
 
 var exerciseName = getExerciseNameFromUrl();
 let exerciseId = '';
@@ -216,6 +219,8 @@ function simulateWorkoutList() {
 
 (async () => {
   try {
+    showLoadingComponent();
+
     const { id } = await getUserData();
     const exercise = getExerciseNameFromUrl();
 
@@ -250,5 +255,8 @@ function simulateWorkoutList() {
   } catch (error) {
     console.log(error);
     alert("Erro ao carregar treinos");
+  }
+  finally{
+    hideLoadingComponent();
   }
 })();

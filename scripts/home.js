@@ -1,8 +1,11 @@
+import { saveTokenToLocalStorage } from "../auth/authentication";
 import api from "../config/api.js";
 import baseUrl from "../config/baseUrl";
 import { getUserData } from "../auth/userData.js";
 import { showLoadingComponent } from "/components/loading/loading.js";
 import { hideLoadingComponent } from "/components/loading/loading.js";
+
+saveTokenToLocalStorage();
 
 initializeOptions();
 
@@ -32,8 +35,6 @@ async function exerciseClickEvent(exerciseName) {
   } catch (error) {
     console.log(error);
     alert("Erro ao buscar rotina");
-  }
-  finally{
     hideLoadingComponent();
   }
 }

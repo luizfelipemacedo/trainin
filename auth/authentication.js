@@ -31,7 +31,7 @@ export function saveTokenToLocalStorage() {
   )?.access_token;
 
   const accessToken = extractAccessToken(url) ?? supabaseLocalStorageKey;
-
+  if(!accessToken) return;
   localStorage.setItem("access_token", accessToken);
 }
 

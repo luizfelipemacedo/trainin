@@ -1,10 +1,13 @@
-initializeBackButton();
+import baseUrl from "../config/baseUrl";
 
-function initializeBackButton(){
+export function initializeBackButton(pagePath){
         var backButton = document.querySelector("#header > .back");
         if(backButton){
                 backButton.addEventListener('click', function (event) {
-                        history.back();
+                        
+                        const url = new URL(`${baseUrl}/${pagePath}`);
+                        window.location.assign(url.toString());
+
                 });
         }
 }
