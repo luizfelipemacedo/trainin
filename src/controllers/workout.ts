@@ -212,8 +212,8 @@ const calculateRepetitions = (inicialReps: number, levelingFactor: number, daily
 const milisecondsToTime = (miliseconds: number) => {
     const date = new Date(miliseconds);
 
-    const minutes = date.getUTCMinutes();
-    const remainingSeconds = date.getSeconds();
+    const minutes = String(date.getUTCMinutes()).padStart(2, '0');
+    const remainingSeconds = String(date.getSeconds()).padStart(2, '0');
 
     return `${minutes}:${remainingSeconds}`;
 }
