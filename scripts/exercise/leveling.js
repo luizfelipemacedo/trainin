@@ -1,7 +1,10 @@
 import api from "../../config/api.js";
 import baseUrl from "../../config/baseUrl";
 import { getUserData } from "../../auth/userData.js";
+import { showLoadingComponent } from "/components/loading/loading.js";
+import { hideLoadingComponent } from "/components/loading/loading.js";
 import { loadRepCounterComponent } from "/components/rep-counter/rep-counter.js";
+
 loadRepCounterComponent("counter-area-insert", confirmCounterCallback);
 
 var exerciseName = getExerciseNameFromUrl();
@@ -17,11 +20,15 @@ async function confirmCounterCallback(selectedValue) {
     const { id } = await getUserData();
     const exercise = getExerciseNameFromUrl();
 
+    showLoadingComponent();
+
     const response = await api.post(`/workout/create-routine`, {
       categoria: exercise,
       usuario_id: id,
       repeticoesIniciais: selectedValue,
     });
+
+    hideLoadingComponent();
 
     if (response.status !== 200) {
       alert("Erro ao salvar rotina");

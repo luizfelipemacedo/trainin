@@ -1,9 +1,10 @@
 import api from "../../config/api";
-import { getUserData } from "../../auth/userData";
 import baseUrl from "../../config/baseUrl";
 import { loadRepCounterComponent } from "/components/rep-counter/rep-counter.js";
 import { updateCounterValue } from "/components/rep-counter/rep-counter.js";
 import { Timer } from "easytimer.js";
+import { showLoadingComponent } from "/components/loading/loading.js";
+import { hideLoadingComponent } from "/components/loading/loading.js";
 
 var timerInstance = new Timer();
 const maxRestSeconds = 90;
@@ -34,6 +35,7 @@ const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 
 const exerciseId = urlParams.get("exerciseId");
+const currentExercice = JSON.parse(urlParams.get("currentExercice"));
 
 function getExerciseNameFromUrl() {
   const queryString = window.location.search;
@@ -47,7 +49,7 @@ function confirmCounterCallback(selectedValue) {
   //Aqui deve ser o entrypoint da funcionalidade para registrar este valor no backend
   //----------------------------
 
-  if (actualSetIndex == window.currentWorkout.sets.length - 1) {
+  if (actualSetIndex == window.currentWorkout?.sets.length - 1) {
     finishWorkout();
     return;
   } else {
@@ -62,7 +64,9 @@ async function registerWorkoutOnDatabase(workoutTotalTimeMs) {
       tempo_total: workoutTotalTimeMs,
     };
 
+    showLoadingComponent();
     const response = await api.post("/workout/conclude", workoutData);
+    hideLoadingComponent();
 
     if (response.status != 200) throw new Error(response.data.message);
   } catch (error) {
@@ -71,18 +75,18 @@ async function registerWorkoutOnDatabase(workoutTotalTimeMs) {
   }
 }
 
-function finishWorkout() {
+async function finishWorkout() {
   finishDateTime = new Date();
   var datetimeDiffMs = finishDateTime - startDateTime;
 
-  registerWorkoutOnDatabase(datetimeDiffMs);
+  await registerWorkoutOnDatabase(datetimeDiffMs);
 
   localStorage.setItem("lastWorkoutReps", getTotalWorkoutReps());
   localStorage.setItem("lastWorkoutDurationMs", datetimeDiffMs);
 
   //mudar para página de treino concluído
   const url = new URL(`${baseUrl}/pages/exercise/completed.html`);
-  url.searchParams.append('exercise', exerciseName);
+  url.searchParams.append("exercise", exerciseName);
   window.location.assign(url.toString());
 }
 
@@ -210,15 +214,7 @@ function onTimerCountdownFinished() {
   advanceToNextSet();
 }
 
-//--------------------------------- Funções de teste ---------------------------------
-simulateWorkoutList();
-function simulateWorkoutList() {
-  window.currentWorkout = {
-    dayIndex: 0,
-    weekNumber: "1",
-    dayNumber: "2",
-    sets: [2, 3, 4, 5, 4],
-  };
-
+(() => {
+  window.currentWorkout = currentExercice;
   initializeWorkoutInfo(window.currentWorkout);
-}
+})();

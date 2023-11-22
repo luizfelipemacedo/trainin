@@ -1,9 +1,12 @@
 import api from "../../config/api.js";
 import baseUrl from "../../config/baseUrl";
 import { getUserData } from "../../auth/userData.js";
+import { showLoadingComponent } from "/components/loading/loading.js";
+import { hideLoadingComponent } from "/components/loading/loading.js";
 
 var exerciseName = getExerciseNameFromUrl();
 let exerciseId = '';
+let currentExercice = {};
 
 function getExerciseNameFromUrl() {
   const queryString = window.location.search;
@@ -35,7 +38,9 @@ async function onResetWorkoutButtonClick(){
     const { id } = await getUserData();
     const exerciseName = getExerciseNameFromUrl();
 
+    showLoadingComponent();
     const response = await api.delete(`/workout/delete/${id}/${exerciseName}`);
+    hideLoadingComponent();
 
     if (response.status === 200 && response.data.message) alert(response.data.message);
       
@@ -147,6 +152,7 @@ function startWorkout(workoutDayIndex) {
   const url = new URL(`${baseUrl}/pages/exercise/workout.html`);
   url.searchParams.append("exercise", exerciseName);
   url.searchParams.append("exerciseId", exerciseId);
+  url.searchParams.append("currentExercice", currentExercice);
   window.location.assign(url.toString());
 }
 
@@ -226,8 +232,17 @@ function simulateWorkoutList() {
     const filterLastCompleted = workoutList.filter((workout) => workout.concluido === true);
     const lastCompletedDayIndex = !filterLastCompleted.length ? -1 : filterLastCompleted.at(-1).dayIndex;
 
+    if (lastCompletedDayIndex === workoutList.length - 1) {
+      // Se todos os workouts já foram concluídos, reinicia o treino
+      onResetWorkoutButtonClick();
+      return;
+    };
+
     // Seta o id do exercício para ser usado na página de workout
     exerciseId = workoutList[lastCompletedDayIndex + 1].id;
+
+    // Seta os dados do exercício para ser usado na página de workout
+    currentExercice = JSON.stringify(workoutList[lastCompletedDayIndex + 1]);
 
     spawnWorkoutItems(workoutList, lastCompletedDayIndex);
   } catch (error) {
