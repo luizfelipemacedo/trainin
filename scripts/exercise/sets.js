@@ -3,6 +3,9 @@ import baseUrl from "../../config/baseUrl";
 import { getUserData } from "../../auth/userData.js";
 import { showLoadingComponent } from "/components/loading/loading.js";
 import { hideLoadingComponent } from "/components/loading/loading.js";
+import { initializeBackButton } from "/scripts/general.js";
+
+initializeBackButton("pages/home.html");
 
 var exerciseName = getExerciseNameFromUrl();
 let exerciseId = '';
@@ -40,7 +43,6 @@ async function onResetWorkoutButtonClick(){
 
     showLoadingComponent();
     const response = await api.delete(`/workout/delete/${id}/${exerciseName}`);
-    hideLoadingComponent();
 
     if (response.status === 200 && response.data.message) alert(response.data.message);
       
@@ -51,6 +53,9 @@ async function onResetWorkoutButtonClick(){
   } catch (error) {
     console.log(error);
     alert("Erro ao reiniciar treino");
+  }
+  finally{
+    hideLoadingComponent();
   }
 }
 
@@ -214,6 +219,8 @@ function simulateWorkoutList() {
 
 (async () => {
   try {
+    showLoadingComponent();
+
     const { id } = await getUserData();
     const exercise = getExerciseNameFromUrl();
 
@@ -248,5 +255,8 @@ function simulateWorkoutList() {
   } catch (error) {
     console.log(error);
     alert("Erro ao carregar treinos");
+  }
+  finally{
+    hideLoadingComponent();
   }
 })();
