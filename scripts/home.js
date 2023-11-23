@@ -5,7 +5,7 @@ import { getUserData } from "../auth/userData.js";
 import { showLoadingComponent } from "/components/loading/loading.js";
 import { hideLoadingComponent } from "/components/loading/loading.js";
 
-saveTokenToLocalStorage();
+// saveTokenToLocalStorage();
 
 initializeOptions();
 
