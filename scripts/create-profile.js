@@ -1,6 +1,11 @@
 import { saveTokenToLocalStorage } from "../auth/authentication";
 import { getUserData } from "../auth/userData";
+import baseUrl from "../config/baseUrl";
 
+saveTokenToLocalStorage();
+const url = new URL(`${baseUrl}/pages/home.html`);
+window.location.assign(url.toString());
+/*
 (async () => {
   saveTokenToLocalStorage();
   const user = await getUserData();
@@ -18,3 +23,4 @@ nextButton.addEventListener("click", goToHome);
 function goToHome() {
   window.location.href = "./home.html";
 }
+*/

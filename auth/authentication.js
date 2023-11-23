@@ -7,7 +7,7 @@ export async function authenticateWithGoogle() {
     await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: `${baseUrl}/pages/create-profile.html`,
+        redirectTo: `${baseUrl}/pages/home.html`,
       },
     });
   } catch (error) {
@@ -31,7 +31,7 @@ export function saveTokenToLocalStorage() {
   )?.access_token;
 
   const accessToken = extractAccessToken(url) ?? supabaseLocalStorageKey;
-
+  if(!accessToken) return;
   localStorage.setItem("access_token", accessToken);
 }
 

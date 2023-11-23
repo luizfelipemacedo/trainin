@@ -5,6 +5,12 @@ import { updateCounterValue } from "/components/rep-counter/rep-counter.js";
 import { Timer } from "easytimer.js";
 import { showLoadingComponent } from "/components/loading/loading.js";
 import { hideLoadingComponent } from "/components/loading/loading.js";
+import { initializeBackButton } from "/scripts/general.js";
+
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+
+initializeBackButton(`pages/exercise/sets.html?exercise=${urlParams.get("exercise")}`);
 
 var timerInstance = new Timer();
 const maxRestSeconds = 90;
@@ -31,8 +37,6 @@ var exerciseName = getExerciseNameFromUrl();
 var startDateTime = null;
 var finishDateTime = null;
 
-const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
 
 const exerciseId = urlParams.get("exerciseId");
 const currentExercice = JSON.parse(urlParams.get("currentExercice"));
@@ -66,12 +70,14 @@ async function registerWorkoutOnDatabase(workoutTotalTimeMs) {
 
     showLoadingComponent();
     const response = await api.post("/workout/conclude", workoutData);
-    hideLoadingComponent();
 
     if (response.status != 200) throw new Error(response.data.message);
   } catch (error) {
     console.log(error);
     alert("Erro ao registrar o treino");
+  }
+  finally{
+    hideLoadingComponent();
   }
 }
 

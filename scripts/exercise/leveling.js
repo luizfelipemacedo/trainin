@@ -4,7 +4,9 @@ import { getUserData } from "../../auth/userData.js";
 import { showLoadingComponent } from "/components/loading/loading.js";
 import { hideLoadingComponent } from "/components/loading/loading.js";
 import { loadRepCounterComponent } from "/components/rep-counter/rep-counter.js";
+import { initializeBackButton } from "/scripts/general.js";
 
+initializeBackButton("pages/home.html");
 loadRepCounterComponent("counter-area-insert", confirmCounterCallback);
 
 var exerciseName = getExerciseNameFromUrl();
@@ -28,8 +30,6 @@ async function confirmCounterCallback(selectedValue) {
       repeticoesIniciais: selectedValue,
     });
 
-    hideLoadingComponent();
-
     if (response.status !== 200) {
       alert("Erro ao salvar rotina");
       return;
@@ -41,5 +41,8 @@ async function confirmCounterCallback(selectedValue) {
   } catch (error) {
     console.log(error);
     alert("Erro ao salvar rotina");
+  }
+  finally{
+    hideLoadingComponent();
   }
 }
