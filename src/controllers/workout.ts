@@ -128,7 +128,7 @@ export async function getWorkoutStats(request: Request, response: Response) {
             repeticoes: true
         },
         orderBy: {
-            data_conclusao: 'desc'
+            data_conclusao: 'asc'
         }
     });
 
