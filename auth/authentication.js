@@ -7,7 +7,7 @@ export async function authenticateWithGoogle() {
     await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: `${baseUrl}/pages/home.html`,
+        redirectTo: `${baseUrl}/pages/create-profile.html`,
       },
     });
   } catch (error) {
