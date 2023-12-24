@@ -1,0 +1,26 @@
+{
+  "name": "@trainin/frontend",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "vite": "^4.4.5",
+    "vite-plugin-pwa": "^0.16.6"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.33.2",
+    "axios": "^1.6.1",
+    "bootstrap": "^5.3.2",
+    "easytimer.js": "^4.6.0",
+    "jwt-decode": "^3.1.2"
+  }
+}

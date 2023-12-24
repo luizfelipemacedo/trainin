@@ -6,8 +6,6 @@
 ![Bitbucket open issues](https://img.shields.io/bitbucket/issues/iuricode/README-template?style=for-the-badge)
 ![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/iuricode/README-template?style=for-the-badge)
 
-<img src="public/icon-256x256.png" alt="TrainIn Logo">
-
 > Aplicativo de treino que permite aos usuários realizar treinos personalizados com metas geradas com base no seu nível de habilidade. Ele acompanha o progresso, registra treinos concluídos e fornece estatísticas detalhadas, promovendo um estilo de vida saudável e ativo.
 
 ## 💻 Pré-requisitos

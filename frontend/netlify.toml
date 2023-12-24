@@ -1,6 +1,6 @@
 [build]
-  publish = "dist"
-  command = "pnpm run build"
+  publish = "frontend/dist"
+  command = "cd frontend && npx vite build"
 
 [[redirects]]
   from = "/*"
