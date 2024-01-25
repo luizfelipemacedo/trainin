@@ -1,10 +1,10 @@
 # TrainIn 🏋️‍♂️💪
 
-![GitHub repo size](https://img.shields.io/github/repo-size/iuricode/README-template?style=for-the-badge)
-![GitHub language count](https://img.shields.io/github/languages/count/iuricode/README-template?style=for-the-badge)
-![GitHub forks](https://img.shields.io/github/forks/iuricode/README-template?style=for-the-badge)
-![Bitbucket open issues](https://img.shields.io/bitbucket/issues/iuricode/README-template?style=for-the-badge)
-![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/iuricode/README-template?style=for-the-badge)
+![GitHub repo size](https://img.shields.io/github/repo-size/luizfelipemacedo/trainin?style=for-the-badge)
+![GitHub language count](https://img.shields.io/github/languages/count/luizfelipemacedo/trainin?style=for-the-badge)
+![GitHub forks](https://img.shields.io/github/forks/luizfelipemacedo/trainin?style=for-the-badge)
+![Bitbucket open issues](https://img.shields.io/bitbucket/issues/luizfelipemacedo/trainin?style=for-the-badge)
+![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/luizfelipemacedo/trainin?style=for-the-badge)
 
 > Aplicativo de treino que permite aos usuários realizar treinos personalizados com metas geradas com base no seu nível de habilidade. Ele acompanha o progresso, registra treinos concluídos e fornece estatísticas detalhadas, promovendo um estilo de vida saudável e ativo.
 
@@ -21,12 +21,12 @@ Para rodar o TrainIn, siga estas etapas:
 
 Clone o repositório TrainIn para o seu computador usando o seguinte comando:
 ```
-git clone https://github.com/luizfelipemacedoc/TrainIn.git
+git clone https://github.com/luizfelipemacedo/trainin.git
 ```
 
 Navegue até o diretório do projeto TrainIn:
 ```
-cd TrainIn
+cd trainin
 ```
 
 Execute o comando npm install para instalar todas as dependências do projeto:
