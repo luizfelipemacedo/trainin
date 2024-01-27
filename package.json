@@ -1,10 +1,9 @@
 {
   "name": "trainin",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Aplicativo de treino que permite aos usuários realizar treinos personalizados com metas geradas com base no seu nível de habilidade.",
   "scripts": {
-    "dev": "chcp 65001 && npx turbo run dev --parallel"
+    "dev": "npx turbo run dev --parallel"
   },
   "workspaces": [
     "frontend",
