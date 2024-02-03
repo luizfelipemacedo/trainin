@@ -5,17 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Index</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
   </head>
   <body>
     <script>
       const hasAcessToken = localStorage.getItem("access_token");
 
       if (hasAcessToken) {
-        window.location.href = "pages/home.html";
-      } else {
-        window.location.href = "pages/login.html";
+        window.location.href = "/pages/home.html";
       }
+      window.location.href = "/pages/login.html";
     </script>
   </body>
 </html>

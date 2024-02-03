@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "app.netlify.trainin.twa",
+      "sha256_cert_fingerprints": [
+        "5D:6E:EF:F7:32:87:D6:9B:C0:AA:7E:BF:A3:23:88:DC:5D:6B:9F:DB:94:50:E0:BC:15:2D:D1:35:9B:3B:D4:E4"
+      ]
+    }
+  }
+]

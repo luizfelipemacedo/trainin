@@ -3,6 +3,11 @@
   command = "cd frontend && npx vite build"
 
 [[redirects]]
+  from = "/.well-known/assetlinks.json"
+  to = "/well-known/assetlinks.json"
+  status = 200
+
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
@@ -19,8 +24,3 @@
     max-age=31536000,
     immutable
     '''
-
-[[redirects]]
-from = "/.well-known/*"
-to = "/well-known/assetlinks.json"
-status = 200

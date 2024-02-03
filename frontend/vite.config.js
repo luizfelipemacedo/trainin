@@ -58,7 +58,10 @@ export default defineConfig({
         workout: resolve(__dirname, "pages/exercise/workout.html"),
         completed: resolve(__dirname, "pages/exercise/completed.html"),
         navigation: resolve(__dirname, "components/navigation/navigation.html"),
-        rep_counter: resolve(__dirname, "components/rep-counter/rep-counter.html"),
+        rep_counter: resolve(
+          __dirname,
+          "components/rep-counter/rep-counter.html"
+        ),
         loading: resolve(__dirname, "components/loading/loading.html"),
       },
     },
